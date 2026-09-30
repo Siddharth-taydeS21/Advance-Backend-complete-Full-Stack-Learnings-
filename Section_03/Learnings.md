@@ -32,3 +32,19 @@
 
   ### parallelism : 
   parallelism in OS is the process of running multiple tasks/processes simultaneously using multiple processing units, Cores or CPUs. 
+
+# Lecture 06 -
+## How to debug processes and worker threads
+* Learned about how we can use inspect and debug processes and threads using a software called system informer. Also, by using VS Code's built-in run and debug tab.
+* Learned about how to connect our Node REPL, which is opened in a specific folder or directory, with the Run and debug tab using a built-in VS Code extension called JavaScript Debugger.
+
+# Lecture 07 -
+## Environment variables
+  * There are three types of environment variables:
+  1. User-specific environment variables
+  2. System-specific environment variable
+  3. Process-specific environment variables
+
+  * Learned about How to make, edit, and delete User-specific & System-specific environment variables using the system's user interface.
+  * Learned about how to add, override process environment variables using `export variableName=<variable>`
+  * learned about how to add a permanent process environment variable using the `.bashrc` file
