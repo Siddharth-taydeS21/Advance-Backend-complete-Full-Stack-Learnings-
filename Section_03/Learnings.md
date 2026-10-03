@@ -129,3 +129,54 @@ bash
 
 <Executable file path>
 ```
+
+# Lecture 12 -
+
+### File permissions in Linux OS -
+
+There are three main types of file and folder permissions in the Linux operating system:
+1. Read permission
+2. Write permission
+3. Execute permission
+
+* How to see file and folder permissions and other stats using `ls -l` In  WSL terminal.
+
+* How to decode the output that the terminal prints when we hit `ls -l` in a WSL terminal - 
+
+### Understanding the output of `ls -l`
+``` 
+output- 
+
+drwxr-xr-x 2 siddharth siddharth 4096 Oct  1 16:28 L06_creatings-and-debugging-threads
+```
+
+### Decoding - 
+```
+drwxr-xr-x      ------ permissions
+2               ------ Number of hard links 
+siddharth       ------ User/owner 
+siddharth       ------ group name 
+4096            ------ Size in bytes
+Oct 1 16:28     ------ time (Last modified)  
+folder Name     ------ directory 
+```
+
+### How to decode permissions - 
+#### the first letter `d` in this code - `drwxr-xr-x` 
+* The first letter `d` represents the type of asset.
+ If the asset is a folder the first letter will be `d`, which represents the directory. 
+ * If the asset is a file the first letter will be `-`, which represents a file. 
+#### The Permissions : `rwxr-xr-x` 
+* In the above example there are three groups. User/owner, group, and other. -
+```
+|rwx|r-x|r-x|
+  |   |   |_____________> other's permissions
+  |   |_________________> group's permissions
+  |_____________________> user/owner's permissions 
+```
+
+### What are the random `r`, `w` and `x` letters? 
+
+* `r` --> means read permission is allowed. 
+* `w` --> means write permission is allowed. 
+* `x` --> means execute permission is allowed. 
