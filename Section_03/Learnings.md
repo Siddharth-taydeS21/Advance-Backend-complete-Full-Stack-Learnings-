@@ -71,12 +71,61 @@ Logical Cores developed by the software. they had shared access of the resources
 ### Working with environment variables in the terminal 
 
 1. How to print all process environment variables using `env`, `printenv` commands in bash terminal
-2. How to set, override User specific environment variable with the help of bash terminal using the setx command : `setx variableName=<variable>`
-3. How to set System specific environment variables with the help of bash terminal using the command - `powershell -Command "setx variableName '<variable>' /M"`
+2. How to set, override Usre specific environment variable with the help of bash terminal using the setex command : `setex variableName=<variable>`
+3. How to set System specific environment variables with the help of bash terminal using the command - `powreshell -Command "setex variableName '<variable>' /M"`
 4. how to set System specific environment variables with the help of bash terminal using the Node.js `child_process` module. 
 ```javaScript
 const { exec } = require('child_process');
 
-exec(`powershell -Command "setx VariableName '<variable>'"`)
+exec(`powershell -Command "setex VariableName '<variable>'"`)
 ```
-5. Learned a trick of debugging the node.js environment in chrome dev tool using `node --inspect <filename>` flag.
+5. Learned a trick of debugging the node.js environment in chrome dev tool using `node --inspect <filename>` falg.
+
+# Lecture 09 -
+
+* Installed Windows Subsystem for Linux because (WSL) it is compatible with the deployment server and that's what the deployment servers and Cloud platform providers provide us to work or interact with our server. 
+
+* Installed VS for better compatibility with WSL and Ubuntu operating system. 
+
+# Lecture 10 -
+
+### Path system explained: Windows vs Linux path system 
+
+There are two types of paths: relative path and absolute path. 
+1. Absolute path : An absolute path is the current location Of a file or a directory, which is related to the user, like the current working directory user is using. 
+2. Relative path : A relative path is a full exact location of a file or directory starting from the root directory of a file system. 
+3. cygpath command : This command is useful for converting universal paths into the desired path that we want. For example this command can convert the Windows path to a Unix path or the Unix path to a Windows path with the help of the flags. 
+
+* for ex. - 
+`cygpath -w <path>` Will convert any path to a Windows system-specific path. 
+`cygpath -u <path>` Will convert any path to a Unix system-specific path 
+
+# Lecture 11 -
+
+### What are executable files and how to create the music node.js - 
+
+There are two types of files:
+1. Script Executable files - 
+A Script Executable file is a file that contains plain text, a human-readable format of scripting languages. A CPU can never understand those files which contain plain text so for that they need interpreters, programming languages like Python, JavaScript, or Java. this languages compiles, converts that scripts into machine code or low-level binary code so that a CPU can understand it and then execute it. 
+
+2. Binary executable file - 
+A binary executable file is a file that contains low-level compiled machine code, the sequence of zeros and ones which a computer CPU can understand and execute without any translation. 
+We use programming language interpreters like C++, Java, or Rust To compile All of our human-readable codebase in to binary code so the computer's CPU simply can understand it and execute.
+
+3. We can execute any script executable file, or binary executable file simply by using a terminal and giving the path of that exact file as a command. 
+
+4. In PowerShell if we want to execute a file, we need to use the `$` sign and the path of that executable file - 
+
+``` 
+powershell 
+
+& <Executable file path>
+```
+
+For Bash or other Linux-based terminal shells - 
+
+``` 
+bash 
+
+<Executable file path>
+```
