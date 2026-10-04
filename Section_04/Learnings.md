@@ -117,3 +117,40 @@ this object has the access of
 - it has a method `resolve` at - `import.meta.resolve`
 
 we can easily access the current file and current working directory using `import.meta.filename` & `import.meta.dirname` in a Node.js ES6 module.
+
+# Lecture 09, 10
+
+### their the various types of module in Node.js - 
+
+the most Common and must know module types are :  
+1. core Node.js modules/native Node.js modules
+2. User created modules
+3. npm modules 
+
+### Differences between CommonJs Modules and ES6 modules  - 
+
+#### Commonjs Modules - 
+- CommonJs modules runs synchronously (blocking code)
+- CommonJs modules runs in non-strict mode of javascript 
+- in Commonjs modules, the value of `this` keyword is equal to the `module.exports` object
+- CommonJs module can not be hoisted in memory creation phase of javascript
+- we can not use `await` keyword outside of an async function in CommonJs modules
+- in Node.js, by default every `.js` file is a CommonJs module
+- CommonJs module can load and execute any type of without validating the file extension 
+- in CommonJs modules providing file extensions in require function call to execute them is optional
+- its a convention to write `.cjs` file extension if the js file is a CommonJs module (in legacy code bases, or in the code bases where project uses both module systems)
+- we can access the file name and directory name in a CommonJs module using the `__filename` & `__dirname` properties of module object.
+
+
+#### ES6 Modules - 
+- ES6 modules runs Asynchronously (non-blocking code)
+- ES6 modules runs in strict javascript mode
+- in ES6 modules, the value of `this` keyword is equal to `undefined`
+- javascript allocates the space in memory to import keywords and executes the import keywords in the memory creation phase. 
+- we can use `await` keyword at the top level in an ES6 module without needing to write an async function
+- to make the `.js` file an ES6 module, we need to set the `type="module"` in the package.json file.
+- ES6 module can just load and execute file with `.js`, `.cjs` & `.mjs` extensions.
+- in ES6 modules file extensions are mandatory while importing them
+- its a convention to write `.mjs` file extension if the js file is an ES6 module (in legacy code bases, or in the code bases where project uses both module systems)
+- we can access the file name and directory name in an ES6 module using the `import.meta.filename` property and the `import.meta.dirname`
+property
