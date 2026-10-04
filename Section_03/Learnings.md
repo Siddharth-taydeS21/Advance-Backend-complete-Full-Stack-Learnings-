@@ -180,3 +180,77 @@ folder Name     ------ directory
 * `r` --> means read permission is allowed. 
 * `w` --> means write permission is allowed. 
 * `x` --> means execute permission is allowed. 
+
+### the final translation of `|rwx|r-x|r-x|` -
+1. in the first block `|rwx|`: is user/owner's permissions :
+* `r` --> means user is allowed to read the asset. 
+* `w` --> means user is allowed to write/update the asset. 
+* `x` --> means user is allowed to execute the asset. 
+
+2. in the second block `|r-x|`: is group's permissions :
+* `r` --> means group is allowed to read the asset. 
+* `-` --> means group is not allowed to write/update the asset. 
+* `x` --> means group is allowed to execute the asset.
+
+3. in the third block `|r-x|`: is other's permissions :
+* `r` --> means others are allowed to read the asset. 
+* `-` --> means others are not allowed to write/update the asset. 
+* `x` --> means others are allowed to execute the asset.
+
+# Lecture 13 -
+
+### How commands execute in different terminals -
+
+When we type any command in terminal shells like bash or PowerShell, the terminal parses them, and it goes through a command resolution process where it determines the command name refers to which - 
+
+1. Alias
+2. Function
+3. Shell Built-ins
+4. Hash tables lookups
+5. Executables Listed in PATH
+
+Then executes..
+
+```bash
+when we type command in bash shell : 
+
+1. it parses the command 
+2. resolves the command name 
+
+3. looks for the command name refers to which - 
+
+   1. Alias     - If he finds an alias with the same name --> execute 
+   2. Function  - If he finds a Function with the same name --> execute
+   3. Shell Built-ins  - If he finds a shell built in with the same name --> execute
+   4. Hash tables - If he finds an entry in a hash table -- execute
+   5. Executables listed in $PATH - 
+   If he finds an executable in $PATH - execute
+```
+
+# Lecture 14 -
+
+### Common Important methods of `process` object  -
+
+* `process.argv;` --> Command-line arguments of a process 
+* `process.env;` --> Environment variables of a process 
+* `process.pid;` --> ID of the process 
+* `process.ppid;` --> Parent process ID of the process 
+* `process.platform;` --> The operating system of the process is running on
+* `process.version;` --> Version of the process // If a Node.js process is running, then this property will print the version of Node.js. 
+* `process.versions;` --> Versions of the dependencies of a process // If a Node.js process is running, then this property will print the version of Node.js dependencies. 
+* `process.arch;` --> Architecture of the process 
+* `process.cwd();` --> prints the current working directory. 
+* `process.chdir("/tmp");` --> Change the directory with a received Directory path 
+* `process.memoryUsage();` --> Memory usage of the process for monitoring purposes 
+* `process.uptime();` --> Process Uptime 
+* `process.exit(0);` --> If 0 is passed, the process will exit with 0 error. If 1 is passed as an argument, the process will exit with an error, and it will pass the error to its parent process. 
+* `process.kill(process.pid);` --> Kill the process by receiving its process ID. 
+* `process.emitWarning(warning, {options})` --> Print a custom OS warning. 
+* `process.stdout.write("Hello, stdout!\n");
+process.stderr.write("Hello, stderr!\n");` --> Interacting with standard in, standard out, and standard error states of a stream 
+* `process.nextTick(() => {})` --> Do something on the next tick of the event loop. 
+
+* Registering event listeners on a process 
+  * `process.on("exit", (code) => {})` --> Process is about to exit with code. 
+  * `process.on("warning", (warning) => {})` --> Handle the warning in call back
+  * `process.stdin.on("data", () => {}) ` --> Process the input data and call back
