@@ -7,8 +7,9 @@
     * `require()` : `require` is a built in function which is used to import code snippets from another module or file which Exports his code using the `module.exports` object.  The require function accepts a file path as arguments. After that it executes the whole code in that file. Then the require function looks for a `module.exports` object at the end of That particular file. Then the final model.exports object becomes the return value of the require function. 
 
     * Module.exports object : `module.exports` is an object which is used to export the code In a file. By default this is an empty object. When we use `module.exports.something`, it includes that property, function, or method in that empty object. Then the overall `module.exports` object becomes the return value of the `require` function called in a particular file 
-
+---
 # Lecture 03 - 
+
 
 ### `module.exports` vs `exports` :- 
 
@@ -52,8 +53,9 @@ What are the similarities & differences between `module.exports` and just `expor
     console.log(module.exports) // {} empty objcet
     ```
      it won't work. 
-
+---
 # Lecture 04 - The module object
+
 
 #### Properties in the module object -
 
@@ -70,8 +72,8 @@ A module itself has its path `.` as its id. The required (imported) modules have
 - `module.loaded` : - A boolean flag that indicates the file has done its execution or loading. 
 - `module.path` : - The Parent Directory location of the module 
 - `module.paths` : - An array of string paths for directories which Node.js will search to download independent modules. Node.js will search for modules in this directories using the paths listed in this array, all the way up to the root directory. 
-
-# Lecuture 05, 06 
+---
+# Lecture 05, 06 
 
 ### Module wrapper function in Node.js
 
@@ -99,8 +101,8 @@ it has access of -
 - this   
 
 this issential variable and methods passed by Node.js, are helpful for accessing the require function, module.exports object, current file location, current directory locations in any CommonJS module accross our entire codebase.
-
-# Lecuture 07, 08
+---
+# Lecture 07, 08
 
 ### ES6 module is in Node.js - 
 
@@ -117,8 +119,9 @@ this object has the access of
 - it has a method `resolve` at - `import.meta.resolve`
 
 we can easily access the current file and current working directory using `import.meta.filename` & `import.meta.dirname` in a Node.js ES6 module.
-
+---
 # Lecture 09, 10
+
 
 ### their the various types of module in Node.js - 
 
@@ -154,3 +157,18 @@ the most Common and must know module types are :
 - its a convention to write `.mjs` file extension if the js file is an ES6 module (in legacy code bases, or in the code bases where project uses both module systems)
 - we can access the file name and directory name in an ES6 module using the `import.meta.filename` property and the `import.meta.dirname`
 property
+---
+# Lecture 11, 12 - 
+
+
+### Different types of modules
+1. User created modules
+   User-created modules are simple TypeScript and JavaScript files which we write to split our application logic into manageable chunks. To use this modules we must explicitly export them using `module.exports` syntax if we are using CommonJS and using `export` syntax if we are using ES6 modules. To import them we can use the `require()` function for CommonJS modules and the `import` keyword for ES6 modules. 
+
+2. Core / Native Node.js modules
+   "Core" modules are built-in Node.js modules which are shipped directly when we install Node.js in our system. On the other hand "Native" modules are the modules which include compiled C++ code in them, like the `fs` module or `crypto` module. 
+   To import and export or use them, we can use the same syntax. For CommonJS we can use `module.exports` and the `require` function and for ES6 modules we can use the `import` and `export` keywords. 
+
+3. Npm modules
+   Npm modules are the third-party modules which are developed by developers or communities. To use npm modules and install them in our system, we use the CLI. By using commands like `npm i express`, we can install these third-party npm modules in our system to use them in our application logic. Node.js will download these third-party modules inside our local `node_modules` folder. To use them in our code we can use the same syntax, like `module.exports` and the `require` function for CommonJS modules, and the `import` and `export` keywords in ES6 modules. Node.js will find them inside the node_models folder to resolve their use in our code. 
+   ---
