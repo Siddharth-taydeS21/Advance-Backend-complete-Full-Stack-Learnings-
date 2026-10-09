@@ -299,9 +299,9 @@ If it doesn't find the package locally or globally inside our local system, then
 
 The file system module is a built-in API in Node.js which allows users and developers to interact with our system's files and directories. With the help of this module we can read, write, update, delete, move, and navigate our file system Without using any third-party package or library.
 
-- #### Diffrence between fs asynchronous methods and synchonous methods - 
+- #### Difference between fs asynchronous methods and synchronous methods -    
 
-The core difference between synchronous FS methods and asynchronous FS methods is how they handle Node.js event loop. fs synchonous methods are blocking, meaning they block execution while their processes are running. On the other hand asynchronous methods are non-blocking and they allow the synchronous code to run in the background in different processes, making our overall application performant and fast.
+The core difference between synchronous FS methods and asynchronous FS methods is how they handle Node.js event loop. fs synchronous methods are blocking, meaning they block execution while their processes are running. On the other hand asynchronous methods are non-blocking and they allow the synchronous code to run in the background in different processes, making our overall application performant and fast.
 
 ---
 
@@ -311,3 +311,72 @@ The core difference between synchronous FS methods and asynchronous FS methods i
 Created a word count CLI project that runs in a command-line in any terminal shell. It accepts the file path of any text file and returns an object containing the entry for each word in that file and the count of that word (it shows how many times that word is repeated or used in that text file). 
 
 ---
+
+# Lecture 21 - 
+
+### Created a custom `copy` command -  
+
+#### successfully built a `copy` command which accepts 2 arguments -  
+1. file (through a path)
+2. destination directory (location where the file will be copied);
+
+### How to use the copy command - 
+i can ran this command in my bash shell (in WSL environments) like this - 
+```
+bash
+
+copy <sourceFile> <destinationDir>
+```
+
+### How i made it work - 
+- #### Step 1 - 
+
+Created a parent folder inside `home/.local/bin/copy` for the main `copy` executable file. and added it in the $PATH variable by adding this lines in .bashrc file - 
+
+```
+~/.bashrc
+
+export PATH="$HOME/.local/bin:$PATH"
+```
+this will tell the bash shell - 'when user types `copy` command in terminal then search the executable file in this location'
+
+- #### Step 2 - 
+
+Used this`shebang` - 
+```
+#! usr/bin/env node
+```
+to tell the interpreter to execute the `copy` executable file using Node.js
+
+- #### Step 3 - 
+Used Node.js `fs` and `path` module, `process.argv` for -
+- extracting the parameters form terminal using -
+```
+Node.js 
+
+const [sourcePath, destinationDir] = process.argv.slice(2);
+```
+- reading the file in buffer using - 
+```
+Node.js 
+
+const fileBuffer = await fs.readFile(sourcePath);
+```
+
+- making the file name/location using - 
+ ```
+Node.js 
+
+const destination = path.join(
+    destinationDir,
+    path.basename(sourcePath)
+)
+```
+
+- finally moving the file at the destination location using - 
+ ```
+Node.js 
+
+await fs.writeFile(destination, fileBuffer);
+console.log('File copied successfully..')
+```
