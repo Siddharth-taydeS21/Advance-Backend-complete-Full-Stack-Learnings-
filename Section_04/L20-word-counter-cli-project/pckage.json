@@ -1,0 +1,5 @@
+{
+    "type": "module",
+    "name": "any",
+    "bin": "node_modules/.bin/any.js"
+}

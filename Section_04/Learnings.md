@@ -293,3 +293,21 @@ When we execute anything using `npm`, it will first search for that executable f
 If it doesn't find the package locally or globally inside our local system, then it will fetch and download the package from npm's registry. It will store that package inside our operating system, node_cache, or the global `node_modules` folder for temporary testing and development. 
 
 ---
+
+# Lecture 19 - 
+### Introduction to file system module - 
+
+The file system module is a built-in API in Node.js which allows users and developers to interact with our system's files and directories. With the help of this module we can read, write, update, delete, move, and navigate our file system Without using any third-party package or library.
+
+- #### Diffrence between fs asynchronous methods and synchonous methods - 
+
+The core difference between synchronous FS methods and asynchronous FS methods is how they handle Node.js event loop. fs synchonous methods are blocking, meaning they block execution while their processes are running. On the other hand asynchronous methods are non-blocking and they allow the synchronous code to run in the background in different processes, making our overall application performant and fast.
+
+---
+
+# Lecture 20 - 
+### Introduction to file system module - 
+
+Created a word count CLI project that runs in a command-line in any terminal shell. It accepts the file path of any text file and returns an object containing the entry for each word in that file and the count of that word (it shows how many times that word is repeated or used in that text file). 
+
+---
