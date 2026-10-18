@@ -1,0 +1,124 @@
+## Lecture No 1 to 6 : Number Systems - 
+#### Decimal Number system (Base 10)
+
+The decimal number system is the number system which we use in our daily life. With the help of the decimal number system, the maximum digit we can represent is 9. Every number position represents power of ten. For ex. (2^0, 2^1, 2^3...)  
+
+- Usage in programming  :
+
+The decimal number system as the universal standard. The decimal number system is normally used to assign numbers to variables or number variable data in day-to-day coding. Every application across the world uses the decimal number system to display the respective data on their UI interfaces. 
+
+---
+
+#### Octal Number system (Base 8)
+
+The octal number system is one of the number systems which a computer uses in its low-level work. In the octal number system the maximum digit we can represent is 7. It includes symbols from 0 to 7. Every octal number and its position represents the power of 8. for ex. (8^1, 8^2, 8^3...).
+
+- Usage in programming  : 
+
+It is primarily used for low-level binary representation and is famously used to set the file permissions in Unix/Linux and Linux-like environments. 
+
+---
+
+#### HexaDecimal Number system (Base 16)
+
+The hexadecimal number system is another most important number system which the computer uses very heavily. In the hexadecimal number system there are symbols from 0 to 9 and it also has A to F to represent some numbers. Every number position represents the power of 16. for ex. (16^0, 16^1, 16^3, ... ) 
+
+- Usage in programming  : 
+
+Computers use the hexadecimal number system to represent complex binary bits and bytes in just one to two characters. It is heavily used to display/translate the hex color codes and other low-level binary computing in computers. 
+
+---
+
+#### Binary Number system (Base 2) 
+
+Binary Number system is the fundamental standard for computers, their low level data storing and transfer works. Everything in the computer is just 0 and 1 at the very physical level.
+
+The binary Number System has only 2 symbols 0 and 1. Every number position represents the power of 2 for ex. (2^0, 2^1, 2^2, ... ). 
+
+Usage in programming : 
+
+it the fundamental language fro computer hardwares. hardwares can hold, store and send electrical charges and signals as 0s and 1s to store, process and send data, and to read and execute code in the sequence of 0s and 1s.  
+
+---
+
+
+## Lecture No 7 : Digital data units
+
+computer can store data in the hardwares by using the hardware's billions of transistors (the bits). the transistors can hold the electrical charges to represent 0s and 1s. 
+
+to map the size of stored data we have "Digital data units". 
+such as - 
+
+- ***a bit*** - one individual bit in billions of bits in hardware components (such as memory, RAM, SSD)
+- ***a nibble*** - a group of 4 bits
+- ***a byte*** - a group of 8 bits
+
+---
+- **KB/Kilobytes** - 1,000 bytes
+- **MB/Megabytes** - 1,000 Kilobytes
+- **GB/Gigabytes** - 1,000 Megabytes
+- **TB/Terabytes** - 1,000 Gigabytes
+- **PB/Petabytes** - 1,000 Terabytes
+- **ZB/Zetabytes** - 1,000 Petabytes
+- **EB/Exabytes** - 1,000 Zetabytes
+- **YB/Yottabytes** - 1,000 Exabytes
+
+---
+
+## Lecture No 8 : 
+### low level Binary data storing and data transfer mechanism -  
+
+### Data storage and Binary foundation -
+
+**Bits :** a bit is a smallest unit of data. it can hold electrical charges which represents 0s (off/empty/no), and 1s (on). 
+
+**Bytes :** a byte is a group of 8 bits which is enough to store a Character in the form of binary number such as "A" of "5" and all others. 
+
+**storing Text :** Text is stored as bytes in memory as hex codes using the standard unicode formats (such as ASCII & Unicode)
+
+**storing Images :** Images got broken into grid of small dots called pixel. each pixel holds the color and brightness contrast in to form of the numbers. hexadecimal number system is used to convert this color codes in to numbers. 
+finally it get stored in the memory as binary numbers sequence of 0s and 1s.
+
+**storing Audio and Video :** they get captured as waves, sampled thousands of times per second and letter on they get stored in the memory as binary numbers sequence of 0s and 1s.
+
+### Data transfer mechanism -
+
+**Binary Conversion :**    
+computers and phones stores data such as text, Images, Videos and Audios in memory in the from binary numbers sequence of 0s and 1s. 
+
+**Data Carrier waves :**   
+Networking devices such as wifi routers generates steady, **electromagnetic radio waves** called Carrier waves. this waves operates on the standard frequencies like 2.4 GHz, 5 GHz and 6 GHz. 
+
+**Modulation :** To hide binary data inside the Carrier waves, Networking device Transmitters change the **amplitude** (height), **frequencies** (speed), **phase** (timing). this process call Modulation of radio waves.
+
+**Transmission (Data sending) :**    
+the Transmitters sends this data through out the world as electromagnetic radio waves in the air.
+
+**Physical Movement :**   
+The invisible electromagnetic radio waves can travel outward nearly at the speed of light. it can pass through free space and barriers such as walls and furniture. 
+
+**Addressing :**
+The data inside the radio waves is sent in small packets and each packets contains a **MAC Address**, so that only the intended recipient device can receive and accept and process it while other devices ignore it.
+
+**Reception (Data receiving):**    
+The Networking device Transmitters can also receive the data as radio waves to read or process them.
+
+**Demodulation / Decoding the Data :**
+Networking device has the components which can analyze the change in the radio waves such as  **amplitude** (height), **frequencies** (speed), **phase** (timing) to Decode the binary data inside the radio waves. 
+
+finally, the received and Decoded data can be used for further operations. 
+
+---
+
+## Lecture No 9, 10 :
+### Character sets - 
+Character sets are the universal inventories which assign the unique hex value to different and all type of letters and Characters in the whole word. computers used Character encoding algorithms to convert the hex value assigned to the letters and Characters, in to binaries to store them in memory. 
+examples of Character sets includes - **ASCII, Unicode**.
+
+---
+
+### Character encoding - 
+
+Character encoding is the data transformation algorithms which tell the computer, that how it can convert a letter, symbol, Character in to data byte such as hex number or binary number. Character encoding algorithms read the data bytes stored in computer memory and helps the computer to display the corresponding letters, symbols, Characters or data on screen.
+
+---
