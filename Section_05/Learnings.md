@@ -122,3 +122,35 @@ examples of Character sets includes - **ASCII, Unicode**.
 Character encoding is the data transformation algorithms which tell the computer, that how it can convert a letter, symbol, Character in to data byte such as hex number or binary number. Character encoding algorithms read the data bytes stored in computer memory and helps the computer to display the corresponding letters, symbols, Characters or data on screen.
 
 ---
+
+## Lecture No 11, 12 : 
+### Intro to Unicode, Unicode planes and UTF - 
+
+- #### Unicode :     
+Unicode is a universal character encoding standard that assigns a unique hex value called **code point** to every possible character, letter, symbol, emoji, Character systems, scripts in our whole world. 
+The computer uses these hex code values of each character to convert them into binary zeros and ones and then it stores it in memory as bits and bytes. 
+
+- #### Unicode planes : 
+The entire Unicode codespace contains **1,114,112** code points for every character, symbol, emoji, or language in our whole world. To keep them organized they are categorized them into 17 equal parts and they are known as planes while each plane, or each category, contains **65,536** (2^16) code points.  
+
+- #### UTF : 
+UTF stands for **Unicode Transformation Format**. It is a character encoding algorithm which computers use to translate the characters into bytes or binary data, such as zeros and ones. The Unicode character set defines which hex value belongs to which character, while the UTF decides how a character or symbol should be translated to store in computer memories for storage or transmission. 
+
+---
+
+## Lecture No 13 : 
+### UTF-8 vs UTF-16 vs UTF-3 
+
+The primary difference between these three is code unit size, variable vs fixed width, and space efficiency while turning a Unicode code point into binary data.  
+
+- **UTF-8**
+
+  UTF-8 is an encoding algorithm which uses 8 bits to store the sequence of 0s and 1s in computer memories. It can use 1, 2, 3, or 4 bytes to To store a Unicode code point into binary data inside the computer memory. The UTF-8 algorithm is compatible with the ASCII character set. It is primarily used in web APIs, internet, JSON or XML, Linux or Unix, and databases. 
+
+- **UTF-16**
+
+  UTF-16 encoding algorithm uses 2 bits by default and a maximum of 4 bits to store or convert a Unicode code point into binary data for storing it inside the memory. It's not compatible with the ASCII character set. It is primarily used in Windows APIs, Java, JavaScript, and .NET strings. 
+
+- **UTF-32**
+
+  UTF-32 is another character encoding algorithm which has a fixed width of 4 bytes. It means it will use 4 bytes by default to store a character in binaries inside computer memory. Its primary use is network/internet sharing and low-level system APIs.  

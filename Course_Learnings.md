@@ -11,4 +11,4 @@
 * [Section 04 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_04/Learnings.md)
 
 ## Section 05: Data representation in Computing 
-* [Section 05 Learnings Index]()
+* [Section 05 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_05/Learnings.md)
