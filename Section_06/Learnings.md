@@ -1,4 +1,4 @@
-## Lecture No 2, 3 - 
+## Lecture No 2, 3, 4 - 
 
 ### Array Buffers -
 ArrayBuffer in JavaScript is an object which is used to represent low-level and fixed-length raw binary data. It's a chunk of co memory allocated in the heap.  

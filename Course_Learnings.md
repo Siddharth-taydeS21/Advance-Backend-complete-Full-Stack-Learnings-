@@ -14,4 +14,4 @@
 * [Section 05 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_05/Learnings.md)
 
 ## Section 06: Buffers and Binary data 
-* [Section 06 Learnings Index]()
+* [Section 06 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_06/Learnings.md)
