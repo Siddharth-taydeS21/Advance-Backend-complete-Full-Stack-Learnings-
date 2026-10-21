@@ -1,4 +1,4 @@
-## Lecture No 2, 3, 4 - 
+## Lecture No 2, 3, 4, 5 - 
 
 ### Array Buffers -
 ArrayBuffer in JavaScript is an object which is used to represent low-level and fixed-length raw binary data. It's a chunk of co memory allocated in the heap.  
@@ -17,12 +17,12 @@ Signed values and unsigned values are examples of how we can represent positive 
 
 ---
 
-### Unit8Array, Unit16Array, Unit32Array vs Int8Array, Int16Array, Int32Array 
+### Uint8Array, Uint16Array, Uint32Array vs Int8Array, Int16Array, Int32Array 
 
 The core difference between unsigned and signed values is that the unsigned values can only includes and only represents positive binary numbers.
 The signed values can represent and store the both, positive and negative types of binary numbers. 
 
-### Comparison Table for Unit and Int Arrays - 
+### Comparison Table for Uint and Int Arrays - 
 
 |TypedArray |	Type |	Size per Element |	Minimum Value |	Maximum Value |
 |--|--|--|--|--|
@@ -32,5 +32,66 @@ The signed values can represent and store the both, positive and negative types 
  |Uint16Array |	Unsigned Integer |	2 bytes (16 bits) |	0 |	65,535 |
  |Int32Array |	Signed Integer |	4 bytes (32 bits) |	-2,147,483,648 |	2,147,483,647 |
  |Uint32Array |	Unsigned Integer |	4 bytes (32 bits) |	0 |	4,294,967,295 |
+
+---
+
+## Lecture No 6 - 
+
+### Typed Arrays 
+
+- Types of Typed arrays - 
+
+  - Int8Array
+  - Int16Array
+  - Int32Array
+  - BigInt64Array
+
+  - Uint8Array
+  - Uint8ClampedArray
+  - Uint16Array
+  - Uint32Array
+  - BigUint64Array
+
+---
+
+#### Learned about -
+**byteLength** property of ArrayBuffers and TypedArrays and **resizable**, **detached** properties of ArrayBuffers, and **transfer()** method of ArrayBuffers. 
+
+---
+
+#### How is the byte length of TypedArrays calculated? - 
+
+This is how the byte length of a typed array is calculated -
+
+```
+byteLength = length of TypedArray * Bytes_per_element
+```
+for example, 
+If we have an `Int8array` with four elements in it, the byte length of that `Int8array` will be - 
+
+length of TypedArray = 4;   
+Bytes_per_element = 1;   
+byteLength = 4 * 1 = 4;
+
+for `Int16array` - 
+length of TypedArray = 4;   
+Bytes_per_element = 2;   
+byteLength = 4 * 2 = 8;
+
+for `Int32array` - 
+length of TypedArray = 4;   
+Bytes_per_element = 4;   
+byteLength = 4 * 4 = 16;
+
+---
+- **transfer() method :** 
+we can make a copy of an ArrayBuffer by using this - 
+
+```
+const a = new ArrayBuffer(4);
+const newArrayBuffer = a.transfer();
+```
+
+This will make the `detached` property of the array buffer named `a` true; and it will copy all contents of the `a` ArrayBuffer to the `newArrayBuffer`. And this method also makes the array buffer empty.
 
 ---
