@@ -95,3 +95,29 @@ const newArrayBuffer = a.transfer();
 This will make the `detached` property of the array buffer named `a` true; and it will copy all contents of the `a` ArrayBuffer to the `newArrayBuffer`. And this method also makes the array buffer empty.
 
 ---
+
+## Lecture No 7 - 
+
+### How to transfer memory data in array buffer format to the network? or from the memory to local disk? - 
+
+- Created a small HTTP server using the HTTP module and sent data in ArrayBuffer format. 
+
+- Created a front-end server to receive data from an HTTP server, which sends the data in ArrayBuffer-format.
+
+---
+
+## Lecture 8 - Buffer in Node.js
+
+In Node.js, `Buffer` is a global object which is used to represent and manipulate the sequence fixed-length raw binary data 
+
+---
+
+Explored Methods - 
+
+- **Buffer.alloc(length: number) :**  
+it creates an Uint8Array like ArrayBuffer and add the 0s as numbers to full the length which we had passed as argument.
+
+- **Buffer.from(array of numbers | arrayBuffer) :**
+it creates an Uint8Array like ArrayBuffer form the array of number which we pass as argument or it can receive an existing ArrayBuffer to create a copy of it.
+
+---
