@@ -118,6 +118,63 @@ Explored Methods -
 it creates an Uint8Array like ArrayBuffer and add the 0s as numbers to full the length which we had passed as argument.
 
 - **Buffer.from(array of numbers | arrayBuffer) :**
-it creates an Uint8Array like ArrayBuffer form the array of number which we pass as argument or it can receive an existing ArrayBuffer to create a copy of it.
+it creates an Uint8Array like ArrayBuffer form the array of number which we pass as argument or it can    
+
+## Lecture 9 - Buffer.alloc() vs Buffer.allocUnsafe()
+
+**Buffer.alloc() :**  
+Buffer.alloc() is a safe standard for creating buffers in Node.js. the method allocate the memory space to the buffer and quickly initialize it by filling 0s in every byte. insuring that, no old, snsitive/harmful data in memory should not get exposed. 
+
+**Buffer.allocUnsafe() :**  
+Buffer.alloc() is a blazing fast method to creating a buffer. it just allocates the space in memory to the buffer and skips the o filling process which make it comparatively more faster than Buffer.alloc() method. it comes with a caution - the memory allocated to the buffer can have snsitive/harmful data, data from previously executed processes. 
+
+its a recommended practice to fill the buffer immediately using the **Buffer.fill(0)** method to make sure there is no old leftover data in the buffer.
+
+--- 
+
+## Lecture 10 - Buffer pool in Buffers
+
+when we make a Node.js Buffer using the method - .allocUnsafe();
+like this - 
+```
+const NodeBuffer = Buffer.allocUnsafe(length);
+```
+
+it add a property to the Buffer named, `buffer`. we can access it like this - 
+```
+console.log(NodeBuffer.buffer) // ArrayBuffer(8192)
+```
+
+that buffer property on `NodeBuffer` buffer is called the **Buffer pool**. it has the fixed length of **8192 bytes.**
+
+- Buffer pools of 2 different buffers share the same space in memory until the buffer is exhausted.   
+- if the buffer pool of buffers gat exhausted then Node.js will create a new buffer pool for next buffer. 
+```
+const buffer1 = Buffer.allocUnsafe(4)
+const buffer2 = Buffer.allocUnsafe(4)
+
+// both buffer pools share tha same space in memory
+console.log(buffer1.buffer === buffer2.buffer) // true
+```
+---
+
+Explored Methods - 
+- **Buffer.concat([buffer1, buffer2]) -**  
+.concat() method joins 2 buffers and creates a new buffer.
+```
+const joinedBuffer = Buffer.concat([bufferA, bufferB]);
+```
+- **Buffer.allocUnsafeSlow(size) :** - 
+The `Buffer.allocUnsafeSlow()` method returns a new buffer. It allocates the space in bytes to the buffer, which we can pass as an argument to the method. It allocates uninitialized memory to the buffer so it might contain old and sensitive data. It is recommended to immediately fill the buffer using the `buffer.fill(0)` method. 
+
+- **constants property -**
+The `constants` property is the property which is exported with the `buffer` module by Node.js and the JavaScript V8 engine. 
+It includes two fields - 
+
+**buffer.constants.MAX_STRING_LENGTH** :   
+Buffers can be decoded into strings using `buffer.toString()` methods. This constant acts as an architectural limit for a file or payload. If the file size or payload size exceeds the limit, then Node.js will throw an invalid range error.   
+
+**buffer.constants.MAX_LENGTH** :   
+If we attempt to make a buffer with a larger size using `buffer.alloc` or `buffer.allocUnsafe` methods, it will give us **ERR_INVALID_ARG_VALUE** or **ERR_INVALID_OPT_VALUE** errors. 
 
 ---
