@@ -178,3 +178,54 @@ Buffers can be decoded into strings using `buffer.toString()` methods. This cons
 If we attempt to make a buffer with a larger size using `buffer.alloc` or `buffer.allocUnsafe` methods, it will give us **ERR_INVALID_ARG_VALUE** or **ERR_INVALID_OPT_VALUE** errors. 
 
 ---
+
+## Lecture 11 - Buffer Methods
+
+Core methods of Node.js Buffer when we create a buffer like this - 
+```
+const NodeBuffer = Buffer.from('Hello world');
+```
+
+- **Buffer.from():** - It receives text or a text file and it can create a Buffer using that text. It can also receive the character encoding as a second argument Which can be further used to decode that same text or file.
+
+- **NodeBuffer.toString():** - 
+It receives a text as the argument for Which character encoding algorithm should be used, and returns the decoded text If we have created a buffer using text.
+
+- **NodeBuffer.write():** - 
+We can give a string as an argument in this method and it will write the string to the existing buffer object. 
+
+- **NodeBuffer.toJSON():** - It returns the JSON representation of the buffer, with a first key, which is `type`, and it has an assigned value of `buffer`. The next key will be `data` and it will be an array containing the buffer data. 
+
+- **NodeBuffer(startIndex, endIndex):** - It crops an existing buffer and it returns it. 
+
+- **NewBuffer.copy(existingBuffer, startIndex, endIndex):** - It copies the data from an existing buffer to another buffer instance. It will also accept the range starting from the start index and ending at the end index to copy a particular set of data from the existing index. 
+
+- **NodeBuffer.includes():** - It checks whether the particular text or number, or any kind of data, is included in the existing number or not and it will return true or false. 
+
+- **NodeBuffer.fill():** - It accepts strings or numbers as arguments and it will add that argument as every element in the buffer. 
+
+- **NodeBuffer.join():** - It returns all elements in the buffer by joining them with the parameter, which we can send as an argument. 
+
+---
+
+## Lecture 12, 13 - 
+
+### Practical uses and Limitations of buffers in Node.js - 
+
+#### **Practical uses :** 
+
+- When we use the file system module in Node.js to manipulate, read, or update any kind of file data or any type of files in our local system, fs module, behind the scenes, uses the buffers to make all the manipulations on the data. 
+
+- When we create a backend server to receive the HTTP requests from the frontend server, any kind of request sent from the frontend server (and the data inside that request) will be received in buffer format on the backend server. 
+
+- We can even send the data in the arrayBuffer or buffer format directly from our front-end server to the backend server. 
+
+#### **Limitations of buffers :** 
+
+Buffers use `ArrayBuffer` data types behind the scenes to do all their low-level work. and `ArrayBuffer` data type uses the memory of our RAM, which is directly associated with our system.
+
+The limitation with buffers is that we can easily create small sizes of buffers. For example buffers with a size of 100 bytes or 1,000 or more bytes but It can become a problem when we need to work with very big sizes of buffers. For example buffers with a size of 2 GB, 5 GB, or 10 GB. 
+
+It can consume almost 70% to 80% or 100% of our memory, which can obviously be harmful for other running processes in our system. It can introduce unnecessary system crashes, hangs, bugs, and lags. 
+
+---
