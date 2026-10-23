@@ -15,3 +15,6 @@
 
 ## Section 06: Buffers and Binary data 
 * [Section 06 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_06/Learnings.md)
+
+## Section 07: Event driven Architecture and EventEmitter
+* [Section 07 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_07/Learnings.md)
