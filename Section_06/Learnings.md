@@ -229,3 +229,31 @@ The limitation with buffers is that we can easily create small sizes of buffers.
 It can consume almost 70% to 80% or 100% of our memory, which can obviously be harmful for other running processes in our system. It can introduce unnecessary system crashes, hangs, bugs, and lags. 
 
 ---
+
+## Lecture No 14, 15 - Base64 and Base64 in Node.js
+
+###  Base64 encoding
+
+Base64 is a character encoding scheme which can convert raw binary data into ASCII strings. It uses 64 characters: `A-Z`, `a-z`, `0-9`, and `=` for padding. 
+
+#### How it works - 
+- For converting binary data to an ASCII string, The Base64 encoding requires a minimum data length of 24 bits(3 bytes).
+- To convert binary data to string characters, Base64 encoding divides the bytes into equal groups of six bytes. 
+- To convert the data into ASCII there is a rule in Base64 encoding which tells -   
+**"the data should be in groups of 6 bits. 6 bits of data will make 1 byte (Because it's the standard of the 64 encoding) and the number of bytes should be a multiple of 3."**
+- If the binary conversion of data is less than 24 bits, then the Base64 character encoding will add multiple zeros to fill the gap of bits. It will make the data full of 24 bits and then it will convert the binary data to an ASCII string. 
+
+---
+The browser provides us with two methods - **btoa() - Binary to ASCII and atob() - ASCII to binary**, to convert an ASCII string to a Base64 mapped string and a Base64 string to ASCII string. 
+
+---
+
+###  Base64 In Node.js  
+
+Explored - 
+
+- Converted raw files (such as text files, images, audio, video, and CSS files) into base64 character strings.
+
+- Then converted those base64 strings into raw files in their previous raw form, using the base64 encoding and base64 URL encoding in Node.js
+
+---
