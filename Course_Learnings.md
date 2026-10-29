@@ -18,3 +18,6 @@
 
 ## Section 07: Event driven Architecture and EventEmitter
 * [Section 07 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_07/Learnings.md)
+
+## Section 08: Node.js Streams
+* [Section 08 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_08/Learnings.md)
