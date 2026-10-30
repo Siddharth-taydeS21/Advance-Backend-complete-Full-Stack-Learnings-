@@ -78,3 +78,32 @@ It returns an object which will be the eventual readable stream. On that returne
 | **Ended State**   | `true`            | `true`          | `false`              |
 
 ---
+
+## Lecture 5, 6 - 
+
+### `readable` event and `read()` method and `Internal buffer` on readable stream 
+
+- `readable` event : -  
+We can listen for the `readable` event on a readable stream when the data is loaded in a chunk of a readable stream. 
+
+- Internal buffer : -  
+Internal buffers are the interface of chunks which a readable stream creates from a file or data which is being read. The default size of an internal buffer of a readable stream chunk is 64 KB. We can also redefine or modify this size using a property called `highWaterMark`. 
+
+- `read()` method : -  
+After listening for the `readable` event on a readable stream, we can later use The `readableStream.read()` method to read an individual chunk of a readable stream. We can also define how many bytes of data we are intended to read with the help of the `read` method. By passing a certain number in the `read` method call, we can define how many bytes of data should be read.  
+
+---
+
+### Explored Events & methods on a readable stream - 
+
+```
+javascript
+
+readableStream.on('open', () => {}) // Do something when a readable stream is yet to read
+readableStream.on('ready', () => {}) // Do something when a stream is ready to read.  
+readableStream.on('error', (err) => {}) // Do something when a stream is destroyed and an error is passed with the `readableStream.destroy()` method. 
+readableStream.on('end', () => {}) // Do something when a stream is ended without any error. 
+readableStream.on('close', () => {}) // Do something when a stream has finished its reading. 
+```
+
+---
