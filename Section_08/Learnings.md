@@ -107,3 +107,28 @@ readableStream.on('close', () => {}) // Do something when a stream has finished 
 ```
 
 ---
+
+## Lecture 7 - Writable streams, BackPressure  
+
+- ### Writable streams -   
+
+We can create a writable stream using the `fs.createWriteStream()` method provided by the `fs` module in Node.js. 
+It provides a `write()` method which can accept chunks ideally passes through a readable stream. This method creates a new file from the data which we are reading with the help of `readStream`. 
+
+- ### BackPressure -    
+Backpressure in Node.js is a memory execution flow or mechanism where the fast data producer, like a readable stream, coordinates with a slow data processor, like a writable stream. A readable stream reads data in a 64 KB binary stream but a writable stream's default data writing buffer limit size is 16 KB. 
+
+When a writable stream accepts or tries to process data that is more than 16 KB, it allocates those extra bytes in memory. This can make our application slow or it can throw ERR_OUT_OF_MEMORY errors. 
+
+--- 
+
+- ### How to handle BackPressure - 
+
+  -  `write()` method of writable stream returns a true boolean flag when there is a space in the chunk of the writable stream, which indicates that more bytes of data can be written with the help of the `write` method in an iteration. Either it returns `false` if the chunk is full and there is no space to give extra bytes for the further writing operation. 
+
+  - When the `write` method returns `false`, it means there is a signal that we need to pause the data flow to the `write` method (so it can take its time to write that data and drain that chunk). 
+  We can pause the execution of a Redux stream using the `.pause()` method. 
+
+  - When a `write` method chunk is drained properly, it will return `true`, which will indicate that the write method is free to process new data to write it somewhere. It is an indication that we can safely resume the read stream process with the help of the `.resume()` method of the readable stream. 
+
+---
