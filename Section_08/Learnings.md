@@ -108,7 +108,7 @@ readableStream.on('close', () => {}) // Do something when a stream has finished 
 
 ---
 
-## Lecture 7 - Writable streams, BackPressure  
+## Lecture 7, 8 - Writable streams, BackPressure  
 
 - ### Writable streams -   
 
@@ -116,7 +116,7 @@ We can create a writable stream using the `fs.createWriteStream()` method provid
 It provides a `write()` method which can accept chunks ideally passes through a readable stream. This method creates a new file from the data which we are reading with the help of `readStream`. 
 
 - ### BackPressure -    
-Backpressure in Node.js is a memory execution flow or mechanism where the fast data producer, like a readable stream, coordinates with a slow data processor, like a writable stream. A readable stream reads data in a 64 KB binary stream but a writable stream's default data writing buffer limit size is 16 KB. 
+BackPressure in Node.js is a memory execution flow or mechanism where the fast data producer, like a readable stream, coordinates with a slow data processor, like a writable stream. A readable stream reads data in a 64 KB binary stream but a writable stream's default data writing buffer limit size is 16 KB. 
 
 When a writable stream accepts or tries to process data that is more than 16 KB, it allocates those extra bytes in memory. This can make our application slow or it can throw ERR_OUT_OF_MEMORY errors. 
 
@@ -130,5 +130,50 @@ When a writable stream accepts or tries to process data that is more than 16 KB,
   We can pause the execution of a Redux stream using the `.pause()` method. 
 
   - When a `write` method chunk is drained properly, it will return `true`, which will indicate that the write method is free to process new data to write it somewhere. It is an indication that we can safely resume the read stream process with the help of the `.resume()` method of the readable stream. 
+
+---
+
+## Lecture 9, 10 - 
+
+### How to close or end a writable stream - 
+
+It is crucial to end a writable stream after the creation of a writable stream. To end a writable stream we can use the `writable.end` method to end writeable stream. 
+
+We can validate if the writable stream is ended or not using the events on a writable stream such as - `writable.on('finish')` &
+`writable.on('close')`. 
+
+--- 
+
+### Writable Stream States in Node.js
+
+#### 1. Writable (Initial) State
+
+The default state where the stream is ready to accept data.
+
+- **Check**: Use the `writable.writable` property.
+  ```js
+  console.log(stream.writable); // true if writable, false if not
+  ```
+
+#### 2. Corked State
+
+In this state, the stream buffers all written data until it is explicitly uncorked.
+
+- **Check**: Use the `writableCorked` property.
+  ```js
+  console.log(stream.writableCorked); // 0 means not corked, > 0 means corked
+  ```
+
+#### 3. Ended State
+
+This state occurs when the `end()` method is called and the stream has been signaled to end, meaning no further writes can be made, but it doesn't guarantee that all data has been flushed yet.
+
+- **Check**: `writable.writableEnded`
+
+#### 4. Finished State
+
+This state occurs when the `end()` method is called and all data has been flushed to the destination.
+
+- **Check**: `writable.writableFinished`
 
 ---
