@@ -177,3 +177,17 @@ This state occurs when the `end()` method is called and all data has been flushe
 - **Check**: `writable.writableFinished`
 
 ---
+
+## Lecture 11, 12 - `.pipe()` & `.unpipe()` methods of readable stream
+
+- ### `.pipe` method -   
+The `readable.pipe()` method connects a readable stream with a writable stream to handle the data reading and writing operation. It is the most common way to handle data streams because it natively handles **backpressure**. It prevents the data allocation in memory where a readable stream reads faster than a writable stream can write. 
+
+- ### `.unpipe` method - 
+Readable `unpipe` method is just the opposite of the `pipe` method. While the `pipe` method connects a readable stream with a writable stream, the `unpipe` method disconnects a writable stream from a readable stream Where both were previously connected with the help of the `pipe` method.
+
+- ### `pipeline` function by 'streams' module for error handling -
+Pipeline is a built-in utility provided by the stream module of Node.js. It's a standard way to handle large datasets. It's a recommended practice to use `pipeline` functions instead of `pipe` or `unpipe` methods because `pipe` methods come with a huge drawback. **They don't handle the errors** if readable or writable streams occurs an error midway.  
+The `pipeline` function handles the error natively. It immediately destroys the previously used streams, clears the internal buffers, and prevents memory leaks or other errors during production. 
+
+---
