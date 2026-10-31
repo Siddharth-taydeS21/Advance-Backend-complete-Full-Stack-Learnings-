@@ -1,0 +1,3 @@
+stdout: hii from output.txt
+hii my name is siddharth
+12345678

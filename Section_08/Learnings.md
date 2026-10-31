@@ -191,3 +191,66 @@ Pipeline is a built-in utility provided by the stream module of Node.js. It's a 
 The `pipeline` function handles the error natively. It immediately destroys the previously used streams, clears the internal buffers, and prevents memory leaks or other errors during production. 
 
 ---
+
+## Lecture 13, 14 - Transform, Duplex & Passthrough streams
+
+### Duplex streams - 
+Duplex stream in Node.js is a stream which can implement functionalities of both readable stream and a writable stream. It can handle the read and write flow of a stream because internally they share the same object wrapper. 
+
+### Transform streams - 
+Transform streams are the streams which can directly perform computing or transforming operations on the input data.  
+
+### Passthrough streams - 
+Pass-through stream is a trivial implementation of a transform stream.
+
+---
+
+### Learned about -
+
+- **The Duplex streams of a process object**
+- **What are `stdin` stream, `stdout` stream, and `stderr` stream of a process object?**
+- **How to share data between input/output/err streams of a process object using the `child_process` module and the `spawn` method of the `child_process` module** 
+
+---
+
+## Lecture 15 - Piping and redirection of streams using bash (WSL) terminal
+
+- ### Piping of streams - 
+We can pipe `stdin`/`stdout` streams of the process object in the terminal using the pipe symbol **"|"** on keyboard.  
+It basically means we can connect the `stdin` and `stdout` streams of 2 diffrent **process objects** with the help of the pipe symbol using the Bash terminal in Linux. 
+
+Example - 
+```
+bash
+
+echo "hello world" | node another-file.js 
+// The output of the `echo` command Is now connected
+ with stdin stream of another-file.js's process object.
+
+```
+
+```javascript
+another-file.js
+
+process.stdin.on('data', (chunk) => {
+    console.log(chunk);
+}) 
+// Extracting the output from the `stdin` duplex stream of the process object 
+```
+
+---
+
+- ### Redirection of streams in files -
+
+Redirection of streams in files is the process of reading the data of a file using a duplex stream, like a process object's `stdin` stream or `stdout` stream and We can connect those streams with the help of `<` symbol.
+
+Example - 
+```
+bash
+
+node another-file.js < output.txt
+// content inside the output.txt file has been read in the form of a  stream and that stream is connected with another-file.js's stdin stream. 
+
+```
+
+---
