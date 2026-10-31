@@ -262,7 +262,7 @@ When we read or write data using streams, such as **readable streams** or **writ
 
 **When we read or write massive files using the `writeFileSync` or `readFileSync` methods**, they completely block Node.js V8 engine's event loop because they are blocking, synchronous code.
 
-When we perform heavy operations such as file reading or file writing using this synchronous methods, internally those methods are opening and closing that file simultaneously using the File dicriptor (`fd`). They are writing or reading that file directly from the disk, which makes the overall operation so expensive and time-consuming. 
+When we perform heavy operations such as file reading or file writing using this synchronous methods, internally those methods are opening and closing that file simultaneously using the File descriptor (`fd`). They are writing or reading that file directly from the disk, which makes the overall operation so expensive and time-consuming. 
 
 If we try to read or write a file in a loop which will run thousands or lakhs of iterations, it means we are making thousands or lakhs of system calls to open or close a single file. That context switches between the Node.js This thing unknowingly backfires on our execution time and performance. 
 
@@ -277,5 +277,63 @@ In Node.js a file descriptor, abbreviated as `fd`, is a non-negative integer ass
 Instead of assigning a massive status object, hard-coded with the file path, directly into the memory or disk, the operating system uses a lightweight metric token to track the open and close status of a file or a stream. 
 
 Every process object ran, through Node.js has three data streams: `stdin`, `stdout`, and `stderr`. By default, the numbers 0, 1, and 2 are assigned to those three streams as file descriptors to define that these I/O streams are opened with its concurrent process. 
+
+---
+
+## Lecture No 19, 20, 21 -
+
+- ### reading files with file descriptor - 
+
+we can read a file and its content with the help of file descriptor, using a method called `fs.read()` by `fs` module. the read method accepts the file descriptor as first argument and returns the reded data in the call back, in the form of - `callBack(err, bytesRead, buffer)`
+
+syntax - 
+```javascript
+const fd = fs.open('file.path'); // file descriptor
+
+fs.read(fd, (err, bytesRead, buffer) => {
+    console.log(err) // null
+    console.log(bytesRead) // length of read data in bytes 
+    console.log(buffer) // read content buffer
+})
+```
+
+- ### writing files with file descriptor -
+
+for writing files using file descriptor and using the method `fs.writeSync` or `fs.write`, we need to make sure that the file is opened in **write mode**.
+
+---
+
+#### How to open files in write or different modes? - 
+
+we can open files in write or different modes using **flags** accepted by the `fs.open()` method as second argument. - 
+
+```
+fs.open(fd, flag) // such as "w", "r" or "a"
+```
+---
+
+#### Most common flags for opening a file in different modes -
+- **"w" flag** - for opening a file in write only mode 
+- **"r" flag** - for opening a file in read only mode 
+- **"a" flag** - for opening a file in append mode 
+
+---
+
+- ### writing files with `fs.Write` method -
+
+`fs.write()` method is pretty similar to `fs.read()` method. the write method accepts the file descriptor as first argument, then it accepts the data to write in destination file as second argument and returns the written data in the call back, in the form of - `callBack(err, bytesWritten, writtenData)`
+
+syntax - 
+```javascript
+const fd = fs.open('file.path', "w"); // file opened in write mode
+
+const data = "abcString"
+
+fs.write(fd, data, (err, bytesWritten, writtenData) => {
+    console.log(err) // null
+    console.log(bytesWritten) // length of read data in bytes 
+    console.log(writtenData) // read content buffer
+})
+```
 
 ---
