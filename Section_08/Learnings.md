@@ -217,7 +217,7 @@ Pass-through stream is a trivial implementation of a transform stream.
 
 - ### Piping of streams - 
 We can pipe `stdin`/`stdout` streams of the process object in the terminal using the pipe symbol **"|"** on keyboard.  
-It basically means we can connect the `stdin` and `stdout` streams of 2 diffrent **process objects** with the help of the pipe symbol using the Bash terminal in Linux. 
+It basically means we can connect the `stdin` and `stdout` streams of 2 different **process objects** with the help of the pipe symbol using the Bash terminal in Linux. 
 
 Example - 
 ```
@@ -252,5 +252,30 @@ node another-file.js < output.txt
 // content inside the output.txt file has been read in the form of a  stream and that stream is connected with another-file.js's stdin stream. 
 
 ```
+
+---
+
+## Lecture 16, 17, 18 - 
+
+- ### Why Streams are so fast? :-
+When we read or write data using streams, such as **readable streams** or **writable streams**, these streams are drastically faster than the ordinary read/write methods provided by the FS module, such as `writeFile`, `writeFileSync`, `readFile`, and `readFileSync`. 
+
+**When we read or write massive files using the `writeFileSync` or `readFileSync` methods**, they completely block Node.js V8 engine's event loop because they are blocking, synchronous code.
+
+When we perform heavy operations such as file reading or file writing using this synchronous methods, internally those methods are opening and closing that file simultaneously using the File dicriptor (`fd`). They are writing or reading that file directly from the disk, which makes the overall operation so expensive and time-consuming. 
+
+If we try to read or write a file in a loop which will run thousands or lakhs of iterations, it means we are making thousands or lakhs of system calls to open or close a single file. That context switches between the Node.js This thing unknowingly backfires on our execution time and performance. 
+
+**When we try to read or write files using a writable or readable stream,** they accept data in chunks and they immediately load that data into an internal buffer. The buffers, under the hood, use memory (RAM) instead of disk, which is extremely fast. They use Node.js internal thread pool, They handle backpressure smartly and utilizes the asynchronous I/O operations effectively, which lets the other processes or networking requests run simultaneously without any delay. This makes the process much faster than the ordinary synchronous methods.
+
+---
+
+- ### `fd` (File descriptor) :- 
+
+In Node.js a file descriptor, abbreviated as `fd`, is a non-negative integer assigned by the operating system to a file or I/O stream to track its open or closed status. 
+
+Instead of assigning a massive status object, hard-coded with the file path, directly into the memory or disk, the operating system uses a lightweight metric token to track the open and close status of a file or a stream. 
+
+Every process object ran, through Node.js has three data streams: `stdin`, `stdout`, and `stderr`. By default, the numbers 0, 1, and 2 are assigned to those three streams as file descriptors to define that these I/O streams are opened with its concurrent process. 
 
 ---
