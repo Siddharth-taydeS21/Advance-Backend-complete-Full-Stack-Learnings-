@@ -396,3 +396,20 @@ writeStream.on('finish', () => {
 ```
 
 ---
+
+## Lecture 26, 27 - How browsers and JavaScript use Streams
+
+### Use of streams in the browser - 
+
+When we create an HTTP server and we try to send a request or we try to get a response from a server, the actual request object is a readable stream. The response we get is a writable stream. Or we can say they are just instances of readable and writable streams. 
+
+The server every time sends the data to the browser in the form of streams. The browser handles those streams very smartly and decodes every chunk, every packet in that stream, very efficiently And displays the decoded data on the screens of our browser.
+
+---
+
+### How JavaScript use Streams 
+
+One example of how we can use readable streams, especially on the client side using JavaScript is -  
+When we receive a response of a HTTP request, The body of that response object is actually a readable stream. We can read data from the response body, which is a readable stream, in chunks and actually access the data very fast, even before the arrival of the full data with that response object. 
+
+---
