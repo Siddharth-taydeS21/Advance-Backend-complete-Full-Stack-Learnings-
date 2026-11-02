@@ -337,3 +337,62 @@ fs.write(fd, data, (err, bytesWritten, writtenData) => {
 ```
 
 ---
+
+## Lecture 23, 24, 25 - 
+
+### How to Open, read, write and close files using fs promises version - 
+
+in fs/promises version, it don't explicitly required to attach the `fd` (file descriptor) of a particular file to perform the standard read write operations. 
+
+syntax to Open, read, write and close files using fs promises version - 
+
+```Javascript 
+// file open operation 
+const fileHandle = await fs.open('filepath', ReadMode)
+
+// file read operation 
+const {buffer: readBuffer, bytesRead} = await fileHandle.read(); 
+
+// file write operation 
+const {buffer: writeBuffer, bytesWritten} = await fileHandle.write('string data' | <arrayBuffer>); 
+
+// file close operation 
+await fileHandle.close(); 
+```
+
+---
+
+### How to create streams using the FS promises version -
+
+In the FS Promises version we don't have native support for methods like `fs.createReadStream` or `fs.createWriteStream`. These methods are directly attached to the fileHandle object Which `fs.open` method returns after opening a file using that method.
+
+syntax for creating readable stream - 
+
+```Javascript 
+// create read streams
+
+const fileHandle = await fs.open('filepath')
+const readStream = fileHandle.createReadStream();
+
+readStream.on('data', (chunk) => {
+    console.log(chunk);
+})
+```
+
+syntax for creating writable stream -
+```Javascript 
+// create write streams
+
+const fileHandle = await fs.open('filepath', "w")
+const writeStream = fileHandle.createReadStream();
+
+writeStream.write('data to write')
+
+writeStream.end()
+
+writeStream.on('finish', () => {
+    console.log('data has been written successfully..')
+})
+```
+
+---
