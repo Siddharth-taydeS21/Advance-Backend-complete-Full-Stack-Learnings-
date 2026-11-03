@@ -90,3 +90,30 @@ A large-scale network spanning major geographical areas using multiple LANs and 
 A secure private network which is built on a public network and which allows remote users or branch offices to access a private network.
 
 ---
+
+## Lecture 8, 9 - Practical on LAN and WAN -  
+
+#### LAN Connection - 
+- Connected laptop, tablet and mobile phone to a Same WI-FI network (Router/mobile Hotspot).
+- Started live server form a folder in the laptop
+- The router assigned same IP address to all connected devices 
+- laptop stared the server on (127.0.0/localhost) and Started the same server on the IP address which is given by the router
+- all connected devices has the same IP address, so any device can access the live server stared by the laptop
+- all other device has the access of the folder in which the live server has Started by the laptop, all devices can browse files, images, videos in that served folder
+
+#### this is how we created a LAN network Practically
+
+---
+
+#### WAN Connection - 
+
+- connected a laptop with a router
+- then connected another laptop with second router
+- we have to different LAN networks 
+- then Connected other routers with LAN to WAN connectors as a one way communication. (LAN device can access the resources of WAN device but WAN cannot access the resources of LAN device)
+- by doing this, the router who Connected with LAN has internet(WAN) as the router who  is providing WAN Connection. 
+- the WAN connector router will assign the IP address to all Connected devices.
+
+#### this is how WAN network Practically
+
+---
