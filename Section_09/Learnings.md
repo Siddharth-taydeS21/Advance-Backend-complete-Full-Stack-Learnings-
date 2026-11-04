@@ -117,3 +117,60 @@ A secure private network which is built on a public network and which allows rem
 #### this is how WAN network Practically
 
 ---
+
+## Lecture 11 -
+
+#### How mobile internet works - 
+
+- When we on the data of our mobile, whichever company's or network provider's SIM (Subscriber Identity Module) we are using, that SIM or our mobile will try to connect with the same network provider's network tower in our area (in the range of typically 15 to 20 km).  
+
+- After connecting with the corresponding network tower, the network tower will send electromagnetic signals to our SIM and it will check for some important credentials, like our recharge expiry, customer identity, and whether the user is allowed to use the internet or not.
+
+- The credential verifications and user authentication and authorization are handled by the servers and technical offices behind the towers. The towers and technical offices are connected with long distributed underground fiber optic cables, which are responsible for traveling the internet over very long distances. 
+
+- After connecting the SIM card and mobile tower and after checking for all the credentials and authorizations, The technical offices and server Inside technical offices of network providers will assign a unique IP address to a mobile device. With that private, unique IP address, we can access the internet with the help of browsers and network applications. 
+
+#### This is how mobile internet works in day-to-day information sharing tasks.
+
+---
+
+## Lecture 12 - `IP Address` and `Subnet Mask`
+
+### Learned about - 
+
+- **IP Address** -   
+An IP address is a decimal representation of a 32-bit or 4-byte binary number. It is assigned by a network provider device (such as a router or even network signal towers) to any network consumer devices (such as a PC, mobile, laptops, or a tablet). 
+When a binary IP address is displayed as a decimal number, each byte is separated with a dot.
+
+- **Subnet Mask** -   
+Subnet masks act as a template for devices to tell which part of an IP address represents the network and which part of that same IP address represents the host. The first 12 bytes of an IP address subnet mask are often a sequence of repeated ones. When we convert that binary number into a decimal, it gets converted into `255.255.255.0`. 
+In modern devices, this subnet mask can be displayed as `/24` to tell the device the first 12 bytes are locked as one. this This process of showing a subnet mask as `/24` is called **CIDR notation**. 
+
+- **Network portion and Host portion** -  
+ When the subnet mask is 255.255.255.0, it means the first 3 bytes of the subnet mask (the first 9 digits of an IP address) represent the network. The remaining last byte, or the remaining number separated by a dot, represents the host, which is a device consuming the network. 
+
+- **Max Numbers of IP Address** -
+An IPv4 address is made of a 32-bit binary number. It means the maximum number of IPv4 addresses can exist is **4,29,49,67,295** (4.29 billion approx). In the modern-day IP address mechanism, IPv6 addresses exist to cross that range and it provides network user devices to have more than 4.29 billion IP addresses. 
+
+- **Loop back address (LocalHost)** -
+In the early days of the invention of IP addresses and the IP protocol, The creators of the IP protocol, reserved a range of IP addresses from 127.0.0.0 to 127.255.255.255 for **loopback addresses (localhost).**   
+When we start localhost server from any device, the localhost server can have the address from 127.0.0.1 to 127.0.0.255 While the first address, 127.0.0.1, and the last address, 127.0.0.255, are being reserved for the network.
+
+---
+
+## Lecture 13, 14, 15 - Dynamic, static, private, and public IP addresses 
+
+- **Static IP addresses** -   
+Static IP addresses can be assigned or logged up by the administrator or ISP (internet service providers).   
+They come, sometimes, to own a static IP address. They need to charge a fixed fee, which is charged by internet service providers or network providers. It is commonly used by public servers, email services, VPNs, or remote offices who need a consistent IP address to manage their online assets. It is risky to manage in the long term because the attackers can target our specific static IP address. The static IP addresses cannot be moved or changed in the long period of time.
+
+- **Dynamic IP addresses** -    
+Dynamic IP addresses automatically assigned by routers or the DHCP servers (Dynamic Host Configuration Protocol). Dynamic IP addresses are usually free of cost because they come with ordinary internet packages provided by internet providers. It often used for day-to-day internet usage for devices like PC, laptop, and smartphones. Dynamic IP addresses are unreliable because they often change when the internet connection connects or disconnects, making it risky to run public servers or development assets on the IP addresses. 
+
+- **Public IP addresses** - 
+The public IP addresses are globally unique addresses of a network, which are provided and assigned by the global-level internet service provider. Public IP addresses lets our home devices, such as PCs or laptops, connect with the global-level internet. 
+
+- **Private IP addresses** - 
+Private IP addresses are the IPs which are assigned by a local internet provider (devices such as routers or Wi-Fi connections) so they can identify our devices Like PC, smartphone, and smart TVs. strictly in LAN (local area) networks. 
+
+---
