@@ -174,3 +174,52 @@ The public IP addresses are globally unique addresses of a network, which are pr
 Private IP addresses are the IPs which are assigned by a local internet provider (devices such as routers or Wi-Fi connections) so they can identify our devices Like PC, smartphone, and smart TVs. strictly in LAN (local area) networks. 
 
 ---
+
+## Lecture 19 - Understanding Domain name system
+
+DNS (Domain name system) is the "Phone book or Contacts List" for browsers. it lets the user type human readable name of sites like `www.google.com` or `www.youtube.com`, then the browsers will translate that Domain name in Numeric IP address like `127.2.0.16` for computers to connect with each other.
+
+### Components of a Domain Name - 
+
+- **Root level Domain (RLD)** -   
+A root-level domain is an unnamed dot, which is automatically assigned by the browser at the end of every domain name. The user doesn't explicitly need to add that dot at the end of any domain name. 
+
+- **Top level Domain (TLD)** - 
+Its the extension at the rightmost part of every domain name, like - `.com`, `.gov`, `.org`, `.net`.
+
+- **Second level Domain (SLD)** -  
+The main name of a domain registered by an authority or an organization. Directly located at the right side of **TLD**. Common examples are `.google`, `.youtube`, `.amazon`. 
+
+- **Subdomain** - 
+A subdomain is an optional section at the very start of any domain name, which represents a server or a section in a domain name. for example - www.app.procoddr.com; - `www`, `app` are subdomains in the domain name.
+
+---
+
+## Lecture 21 - How DNS works
+
+DNS works as a phone book for internet which let the users type the human readable text to look for a website, and the browser converts it in to numeric IP address to connect our computer with the site's underlying server.
+
+#### This is how DNS works step by step - 
+
+- **browser query cache check** -  
+first the browser checks for it cache storage for recently visited IP addresses and if it finds one it will return it with the site connected to it.
+
+- **Os query cache check** -  
+If the browser didn't found any IP address in his cache storage, it will as the Operating system for it's cache of IP addresses. if it finds one it will return it with the site connected to it.  
+
+- **Recursive DNS resolver query** -
+if IP address is not found in the first 2 cache search steps, the the browser first connects the **IPS(Internet service provider)** server in the search of the nearest Root servers.
+
+- **Root DNS server query** -
+The Root DNS servers sits at the top of DNS server hierarchy. there are 13 logical root server networks worldwide. they do not directly know for which specific IP address we are looking for. they just redirect the query to the corresponding **TDL Nameserver**. 
+
+- **TDL server query (lookup for specific TLDs like .com, .org etc)** -
+TDL  Nameservers are responsible for classifications of top level domain names like `.com`, `.in`, `.org`. they didn't directly know IP address, but the redirect the query to a final **Authoritative Nameserver**
+
+- **Authoritative nameserver query** -  
+in the last step the DNS resolver connects with the Authoritative Nameserver managed by hosing provider organizations like, Hostinger, Godday or CloudFlair. This servers actually the holds the records of the IP address and the corresponding website and domain connected to it. it responds back with the IP and the site in a return query.
+
+- **returning the exact registered IP and the Loading site** -
+The return query will hit browser after the response by the Authoritative Nameserver and it will finally display the domain name and the Loading site on the browser.
+
+---
