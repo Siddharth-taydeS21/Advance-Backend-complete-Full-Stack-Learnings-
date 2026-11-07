@@ -223,3 +223,74 @@ in the last step the DNS resolver connects with the Authoritative Nameserver man
 The return query will hit browser after the response by the Authoritative Nameserver and it will finally display the domain name and the Loading site on the browser.
 
 ---
+
+## Lecture 23 - IPv6 addresses 
+
+IPv6 (Internet protocol version 6) addresses are 128 bit binary Numeric number/or 32 digit hexadecimal number used to identify or locate a device or network connected to a IPv6 based network. 
+
+**Notation :-**   
+IPv6 address is a combination of group of 8 group of hexadecimal numbers while each group has 4 hexadecimal numbers. 
+
+**Shortening Rules :-** 
+- 0 at the starting of any number group in an IPv6 address can be drooped. for ex - `0005` and `00a1` can be written as `5` and `a1`. 
+
+- repetitive 0s in a group in an IPv6 address can be written as `::`
+for ex - `fe80:0000:238c === fe80::238c` 
+
+**An IPv6 address for localhost server :-**   
+when we start a node.js/backend server, it starts on a IPv6 address by default it can be accessed on the `localhost:{port}` and can be also accessed here - `::1{port}`.
+
+---
+
+## Lecture 25, 26,  - What is `Port` numbers, WireShark, Network Interfaces
+
+A port number is a 16-bit unique number (Ranges between 0 and 65,535) which comes after any IP address in a network. it directs the The incoming or outgoing network data with every request to reach a specific running application, or a service/process on a specific device connected with the network. 
+
+To understand it on a basic level, an IP address represents a home or a building on a network while a port number represents a specific room or apartment in a building to transfer the data to a specific location on a device. 
+
+---
+
+### How port numbers work - 
+
+- **IP + Port :-**    
+On the network it requires both the IP to define and locate the device and the port number to define a specific running process or application on that same device. 
+
+- **Simultaneous network tasks :-**  
+It allows a single device to run multiple networking tasks at once by connecting multiple ports on a single IP address. 
+
+---
+
+### Categories of port numbers - 
+- **Well Known Ports** - (`0` - `1023`)
+- **Registered Ports** - (`1024` - `49151`)
+- **Dynamic, Private or Ephemeral Ports** - (`49152` - `65535`)
+
+
+#### Learned About - how to inspect IP addresses and port numbers of incoming and outgoing Network requests using a Tool - **WireShark**
+
+---
+
+### Network Interfaces - 
+
+The ways we can access the internet using different Devices are Called **"Network Interfaces"**. the Network Interfaces can differ as the device changes. common examples of Network Interfaces are for - 
+
+- Ethernet cable, Ethernet card
+- Wifi
+- Bluetooth
+- USB Connection with a cable
+- Cellular Data (for mobile only)
+
+---
+
+## Lecture 28 - What is `MAC Address`?
+
+A mac address is 48 bit Unique physical hardware identifier, assigned by the **Network interface controller (NIC)** by it Manufacturer.   
+
+**Format and Structure -**   
+Its a 12 digit hexadecimal number grouped into 6 equal groups and separated by colons, hyphens or dots. its first 6 digits represents the hardware manufacturer and the next 6 digits represent the unique identifier number assigned by the hardware manufacturer to its **network interface controller card**
+
+**Use cases -**   
+- wifi router use MAC addresses to list down the devises connected with it in client tables.
+- wireless network devises such as wi-fi routers and others use MAC addresses to filter out the devises when they are intended to share a specific data to a specific devices 
+
+---
