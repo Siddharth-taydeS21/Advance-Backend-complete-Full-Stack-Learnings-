@@ -325,3 +325,57 @@ The Physical layer handles the transmission/sending the raw datastream over a ph
 When the data travels from Layer 7 to 1 (Data sending) the process is called **Encapsulation**. and when the data travels from Layer 1 to 7 (Data Receiving) the process is called **De-capsulation**.
 
 ---
+
+## Lecture 31 - TCP/IP model - 
+
+The TPC/IP model is standardized and Narrowed down model of the OSI model. the OSI model is a 7 layer theoretical framework to understand the architecture of how the computer systems and networks communicate. on the other hand the TCP/IP model is 4/5 layer standard built and used in real world communication across the internet. 
+
+### Primary Differences between OSI and TCP/IP model -  
+
+|OSI Model Layer|TCP/IP model layer|Data Unit|
+|--|--|--|
+|Application (Layer 7)|Application (Layer 4)|Data|
+|Presentation (Layer 6)|Application (Layer 4)|Data|
+|Session (Layer 5)|Application (Layer 4)|Data|
+|Transport (Layer 4)|Transport (Layer 3)|Segments (TCP)/ DataGrams (UDP)|
+|Network (Layer 3)|Internet (Layer 2)|Packets|
+|Data Link (Layer 2)|Network access (Layer 1)|Frames|
+|Physical (Layer 1)|Network access (Layer 1)|Bits|
+
+---
+
+## Lecture 32 - Topologies 
+
+Topology in network connection is the physical or logical arrangement or connection between devices (notes in a network). it dictates how the devices are arranged are connected with each other in a network and how the data is moving across the network. 
+
+### Common Types of network Topologies - 
+- **Peer to peer Topology -** (connection of 2 devices)
+- **Bus Topology -** (More than 2 devices connected in a line)
+- **Ring Topology -** (Loop of connected devices)
+- **Star Topology -** (More than 2 devices connected with a single network device making a start)
+- **Mesh Topology -** (network of more than 2 devices, while each device is connected with all others)
+- **Tree Topology -** (connected devices making a Tree structure)
+- **Hybrid Topology -** (A custom Topology or a blend of more than 2 topologies like star, mesh, bus or ring)
+
+---
+
+## Lecture 33 - TCP and UDP Protocols
+
+TCP (Transmission control protocol) and UDP (User Datagram protocol) are network protocols used to transfer data over the network using internet. They both are based in IP (Internet protocol). 
+
+### **TCP Protocol** -  
+TCP Protocol is a reliable way to transfer the data because - 
+- It uses **Three way handshake (SYN, SYN-AKC, AKC)** to establish a secure connection between 2 devices, before start sending the data
+- It guarantees delivery with the help of AKCs and retransmission on the packets los.
+- It maintains the order of packets for safe reassembly of data when it reaches the destination. 
+- It has haviour overload because of Three way handshake, and retransmission cycles.
+- Heavily used in protocols like HTTP, HTTPS, DNS, FTP, SMTP, etc.
+
+### **UDP Protocol** - 
+UDP Protocol is a unreliable and comparatively slower way to transfer the data because -
+- It sends the data immediately with out a handshake.
+- dose not guarantees delivery, maintains the order of packets, and not handles packets loss. 
+- its has lesser overload compared to TCP
+- commonly used for Video streaming, online gaming, video calls. 
+
+--- 
