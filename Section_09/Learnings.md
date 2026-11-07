@@ -294,3 +294,34 @@ Its a 12 digit hexadecimal number grouped into 6 equal groups and separated by c
 - wireless network devises such as wi-fi routers and others use MAC addresses to filter out the devises when they are intended to share a specific data to a specific devices 
 
 ---
+
+## Lecture 30 - The OSI Model (Open Systems Interconnection Model)
+
+The OSI model is a 7 layer conceptual framework created by **International Organization for Standardization** to define how the Computer systems will communicate with networks.   
+
+form the top to bottom, the 7 layers are - 
+
+- **Layer 7 Application layer** -   
+Its the layer where we can decide the way of communication with networks, and define the data to be sent through the network. examples HTTP, HTTPS, DNS, FTP, etc.
+
+- **Layer 6 Presentation layer** -    
+In the presentation layer the Encryption/decryption, Compression, serialization of data will be performed and the data will be translated in to sharable format (Binaries).   
+
+- **Layer 5 Session layer** -  
+The session layer Establishes, manages, terminates the Network connection between the devices (source device and destination device).  
+
+- **Layer 4 Transport layer** -  
+The transport layer manages the End-to-end communication, error checking between the source device and destination device. and it breaks down the data into small chunks called **"Segments".**
+
+- **Layer 3 Network layer** -  
+The Network layer manages the addressing of each data Segment. it assigns an IPv4/IPv6 address along with a port address to each segment. a segment after adding IPv4/IPv6 address and a port address is called a **Packet**. 
+
+- **Layer 2 Data Link layer** -   
+The Data Link layer adds a unique **MAC address** to each data packets so the destination device could know with which device the data belongs to. 
+
+- **Layer 1 Physical layer** -   
+The Physical layer handles the transmission/sending the raw datastream over a physical media like cables (Ethernet.fiber optics as electric, radio signals). 
+
+When the data travels from Layer 7 to 1 (Data sending) the process is called **Encapsulation**. and when the data travels from Layer 1 to 7 (Data Receiving) the process is called **De-capsulation**.
+
+---
