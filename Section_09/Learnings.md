@@ -379,3 +379,19 @@ UDP Protocol is a unreliable and comparatively slower way to transfer the data b
 - commonly used for Video streaming, online gaming, video calls. 
 
 --- 
+
+## Lecture 34, 35, 36 - 
+
+### What is SSH - 
+SSH stands for **Secure shell**, built on top of TCP protocol. it's a cryptographically encrypted network protocol used to connect, manage and communicate between 2 remote devices on an unsecure network like Internet.
+
+### Advantages of shh - 
+- **Secure Remote command line access**
+- **Secure and reliable file transfer**
+- **Command line tunneling and port forwarding**
+- **Automation**
+
+### `scp` command - 
+SCP command **(Secure copy protocol)** is a Built in utility in ssh used to copy files and directories between remote servers over a network. it uses ssh protocol for authentication of user and data transfer behind the scene to ensure the data remain safe and encrypted during the network communication. 
+
+---

@@ -1,0 +1,66 @@
+// ======== check the ssh installations ======== //
+ssh -V = Check ssh is installed or not
+dpkg -l | grep openssh-client == Check ssh client is installed or not
+dpkg -l | grep openssh-server == Check ssh server is installed or not
+
+
+// ======== ssh installations commands ======== // 
+sudo apt update
+sudo apt install openssh-server
+
+
+// ======== check ssh installations ======== //
+sudo systemctl status ssh
+
+
+// ======== enable and start ssh server ======== //
+sudo systemctl start server
+sudo systemctl enable server
+
+
+// ======== allow firewall access for ssh ======== //
+sudo ufw allow ssh
+
+
+// ======== remoter terminal connection command ======== // 
+shh <username of another machine>@<ip address of that same machine>
+
+
+// ======== copy file from client to server or server to client using scp command ======== //
+
+1. syntax when the destination-machine ip address is an IPv4 address - 
+scp "source-path/" <destination-machine username>@<destination-machine ip address>:<destination path for pasting the file>
+
+2. syntax when the destination-machine ip address is an IPv6 address - 
+scp <destination machine-username>@[destination machine IPv6 address]:destination machine path for pasting the file
+
+3. copy the file form server to client
+spc <server machine username>@<server machine ip address>:<file path in server machine> <client machine path for pasting the file>
+
+
+
+// ========= assignment : try to copy a folder from client to server then server to client using scp command ========= //
+
+
+// ======== auth less client-server communication using private and public keys in shh ======== //
+
+step 1 - generate cryptographic private and public keys - 
+ssh-keygen 
+
+step 2 - paste the public key in server machine's .shh/authorized_keys file
+
+// ======== ssh connection with -i flag (identify ssh public key file) ======== //
+ssh -i "ssh public key file path" <machine-name>@<machine-ip-address>
+
+// ======== crating shortcuts for connecting with multiple servers with config file in .SSH folder ======== // 
+
+.ssh/config -
+Host local-server
+    Hostname 172.168.0.100
+    User siddharth
+    IdentityFile ~/.ssh/local-server-key
+
+Host aws-server
+    Hostname 147.153.0.8
+    User aws-machine
+    IdentityFile ~/.ssh/aws-server-key
