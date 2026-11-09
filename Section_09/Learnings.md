@@ -395,3 +395,17 @@ SSH stands for **Secure shell**, built on top of TCP protocol. it's a cryptograp
 SCP command **(Secure copy protocol)** is a Built in utility in ssh used to copy files and directories between remote servers over a network. it uses ssh protocol for authentication of user and data transfer behind the scene to ensure the data remain safe and encrypted during the network communication. 
 
 ---
+
+## Lecture 37, 38 - 
+
+**Creating an AWS account for upcoming backend projects !** 
+
+## Lecture 39 - EC2 instance on AWS 
+
+- created EC2 instance (A virtual public server running on AWS cloud which lets us rent a application in hardware server)
+- configured firewall rules for outbound requests in the virtual ec2 server
+- connected with EC2 instance with our local computer using ssh protocol
+- associated a public ip address (Elastic IP address) provided by AWS to the EC2 instance server
+- learned how to stop, start and terminate a running EC2 instance
+
+---

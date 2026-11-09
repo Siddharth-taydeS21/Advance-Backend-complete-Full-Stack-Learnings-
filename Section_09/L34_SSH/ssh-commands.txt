@@ -40,6 +40,8 @@ spc <server machine username>@<server machine ip address>:<file path in server m
 
 
 // ========= assignment : try to copy a folder from client to server then server to client using scp command ========= //
+Done -- we can copy the directory form source to destination using this command and '-r' recursive flag - 
+scp -r "path of directory" <>@<>:<path to paste the directory>
 
 
 // ======== auth less client-server communication using private and public keys in shh ======== //
