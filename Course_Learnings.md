@@ -24,3 +24,6 @@
 
 ## Section 09: Basics of Computer Networking
 * [Section 09 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_09/Learnings.md)
+
+## Section 10: Networking with core Node.js
+* [Section 10 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_10/Learnings.md)
