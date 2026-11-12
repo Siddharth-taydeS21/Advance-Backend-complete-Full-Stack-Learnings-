@@ -41,14 +41,37 @@
 
 --- 
 
-## Lecture 7 - 
+## Lecture 7 - creating multiple TCP clients 
 
 - made a js file where i written a TCP server code. after running this file using terminal its became the server.
 - Made a second JS file where I written TCP client code. After running this file from different terminals and multiple terminals, I connected multiple TCP clients with a single TCP server. 
 - Implemented a custom logic where an individual TCP client can write text in a terminal. Before writing the text, it will provide a number, and according to that number, the message will be forwarded to that client which are the number. For example, if we write `to` before writing a message in the terminal, the message will be forwarded to the second client connected with the TCP server. 
 - Implementing that logic was so time-consuming and complex but I implemented it. It was not perfect. There are too many bugs, but I achieved the desired behavior. 
 
-## Lecture 8 - 
+## Lecture 8 - File upload operations using multiple TCP clients 
 
-- Created a TCP server and connected multiple clients with it using the previous implementation of Lecture 7. 
-- This time, implemented a logic where an individual TCP client can send a text to the server, and the server will send that text to all connected TCP clients except the TCP client which had sent that text. 
+- Created a TCP server and connected multiple clients with it using the previous implementation in Lecture 7. 
+- This time, implemented a logic where an individual TCP client can send a text files to the server, and the server will send that text file to all connected TCP clients except the TCP client which had sent that text file. 
+
+## Lecture 9 - HTTP server using the `net` module 
+
+- Created a TCP server and accessed using Browser. 
+- Read different files, such as video and image files, from the local server directory, with the help of a readable stream, sent those files the browser because the browser was connected as a client in socket with the TCP server. 
+- Send that video and image files to the browser as HTTP requests using out TCP server, because the browser only understands HTTP requests. 
+
+## Lecture 10 - Setting HTTP response headers on response in TCP server code 
+
+- Created a TCP server and learned about how to add HTTP response headers to response TCP server while the server is sending a response to an HTTP client. 
+- Experimented with accessing the server using a browser as an HTTP client, then accessing the same server using an HTML localhost server as an HTTP client. 
+- cross checked with Inspecting the response headers in Chrome's Developer Tool's Network tab.
+
+## Lecture 11 - Important HTTP headers 
+
+- Learned about how we can set HTTP response hearers to outgoing http response object
+- explored different response hearers such as - 
+    - `Content-length` : for automatically ending the upload operation after successful upload
+    - `Content-type` : for previewing the file
+    - `Content-disposition: attachment` : for automatic download fo file
+    - `Content-disposition: attachment; filename={custom file name}` : for downloading the file as custom file name. 
+- initialized file previews, file uploads, file downloads on browser using a TCP server and browser as client.
+- learned about how browser understands the Content related response headers and initialize the different file operations lie previews, uploads, downloads without the any need of server side logic.
