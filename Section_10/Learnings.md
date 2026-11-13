@@ -65,7 +65,7 @@
 - Experimented with accessing the server using a browser as an HTTP client, then accessing the same server using an HTML localhost server as an HTTP client. 
 - cross checked with Inspecting the response headers in Chrome's Developer Tool's Network tab.
 
-## Lecture 11 - Important HTTP headers 
+## Lecture 11, 12, 13, 14 - Important HTTP headers, File operations on browser, assignment task   
 
 - Learned about how we can set HTTP response hearers to outgoing http response object
 - explored different response hearers such as - 
@@ -75,3 +75,29 @@
     - `Content-disposition: attachment; filename={custom file name}` : for downloading the file as custom file name. 
 - initialized file previews, file uploads, file downloads on browser using a TCP server and browser as client.
 - learned about how browser understands the Content related response headers and initialize the different file operations lie previews, uploads, downloads without the any need of server side logic.
+- Control the speed of uploads and downloads over the browser using manual backpressure handling while a readable stream is writing the data on the socket which is connected with the browser. 
+- Used manual backpressure handling logic and set timeouts to make the download and uploads slow on the browser.
+- Learned about how to inspect individual data packets in Wireshark application. 
+    - a practical example of how the data sent in packets over the network when we work with streams in node js. 
+    - made a TCP server and sent request on it using browser. the browser and TCP server was connected with a websocket.
+    - inspected data packets and SNK, ACK, PSH request in Wireshark application. 
+
+- completed a task : 
+    - Created a TCP server and read a long text file using a readable stream 
+    - Started a local server from an HTML file, While the HTML file and browser are connected as a client 
+    - The TCP server and the browser were connected as a WebSocket. On the `data` event on the readable stream, written data on the socket as very small chunks with the help of the `highWaterMark` property, where a very small size for each readable chunk of readable stream was configured. 
+    - On the client-side logic, read the small chunks and, after reading them, immediately written the small chunks to the browser's document element, making an automatic text-typing, text-generation effect like ChatGPT and AI LLM generation tools. 
+
+## Lecture 15 - Uploading files on the server side in some browser 
+- Created an HTML file where I added an input for files. When the user uploads a file, the file will be posted to our server as multipart form data. 
+- After the file reaches the server, reading its binary content and using a writable stream to assemble that file chunk by chunk on our server. 
+    
+## Lecture 16 - Uploading files on the server side in some browser
+- Started using the HTTP module for creating HTTP servers in Node.js 
+- The HTTP module is built on the net module, and the HTTP requests are also TCP requests under the hood 
+- Learned an important distinction: When we create an HTTP server using the HTTP module. Inside the `createServer` method, we had access to the `response` and `request` objects. The `response` and `request` objects are not anything else, The `request` object is a readable stream, and the `response` object is a writable stream. 
+- The `http.createServer` method returns a server object. On that server object, we can listen for the connection event. After that event, we can pass a callback. In that callback, we receive a socket object, which is a direct connection between the browser and the HTTP server. 
+- **Difference between the socket object returned by an HTTP server and the response and request objects of an HTTP server : -**
+In the HTTP server, when we listen for the `request.on('data')` method, it only returns the request body. If the request body is empty, the `request.on('data')` method will never fire.
+
+On the other hand, when we listen for the `connection` event of the server, it gives us access to the socket inside the callback. When we listen on that socket for the `data` event, it prints both - the headers of the request and the actual body of the request object.  
