@@ -101,3 +101,52 @@
 In the HTTP server, when we listen for the `request.on('data')` method, it only returns the request body. If the request body is empty, the `request.on('data')` method will never fire.
 
 On the other hand, when we listen for the `connection` event of the server, it gives us access to the socket inside the callback. When we listen on that socket for the `data` event, it prints both - the headers of the request and the actual body of the request object.  
+
+## Lecture 17, 18 - HTTP Request methods and HTTP Response status codes - 
+
+Learned about -
+- the most common HTTP request methods, such as GET, POST, PUT, PATCH, DELETE, HEAD and OPTIONS. 
+- What is the purpose of each method
+- What change does each method make to the server or database state
+- Is each individual option **Idempotent** or not, Are they **Safe** or not, (If a request method is making any change in the state of the server or database, it is considered an unsafe request method Otherwise, it will be considered a safe method.) 
+
+- Learned about the most common HTTP response status codes. What are the purposes of them, What do they mean when we send them with an HTTP response, How do the front-end and backend understands while sending response status codes.
+
+## Lecture 19, 20 - Creating a basic STT client, Structure of HTTP request and response objects  
+- Created a basic HTTP client for connecting with an HTTP server using the `http.request` method. 
+
+- Learned about the basic structure of an HTTP response and an HTTP request. 
+- **Structure of an HTTP Request** - 
+    ```text
+    <method> <path> <HTTP version>
+    <Request header key>: <Request header value>
+    <Request header key>: <Request header value>
+    <Request header key>: <Request header value>
+    ...
+
+    -- Request body start (with \n\n) --```
+
+- **Structure of an HTTP Response** -
+    ```
+    <HTTP version> <HTTP Status code> <<HTTP Status description (ex. - OK, Not found, Server Error)>
+    <Response header key>: <Response header value>
+    <Response header key>: <Response header value>
+    <Response header key>: <Response header value>
+    ...
+
+    -- Response body start (with \n\n) --```
+
+- Created a basic http server which servers local html css and js files ans text response on the localhost url when we go to this routes - /html, /js, /css.
+
+## Lecture 21, 22, 23 - 
+
+- Implemented a web server which serves local files in a directory, but this time used actual files to serve over the browser, such as text files, JPEG files, PDF files, and video files. 
+- Started a basic project inspired by Google Drive, which can simply serve files over the browser with preview, download, and upload buttons. 
+- Implemented preview and download functionality on the mini project :
+ Key behaviors are: 
+    - when the user types file names or folder names in the URL with the serer IP address, the user can preview the file or folder with content inside it . 
+    - After implementing the preview functionality, added two buttons: Open and Preview, Download
+    - When the user types a file name or folder name in the URL and provides a specific query param (like `action=preview` or `action=download`), the file or particular folder will start previewing or downloading. 
+    - If the query param `action` is equal to `preview`, the file will be previewed on the browser using a response header: `response.setHeader('Content-Type', mimeType)`, where `mimeType` is the MIME type of that specific file. Used the `mime-type` npm package for getting the exact MIME type by providing the exact file. 
+    - When the user provides a query param `action=download`, after the file name, the file will start downloading. Implemented the download functionality using the response header: `response.setHeader('Content-Disposition', 'attachment; filename={file name}')`. 
+    - Added an extra edge case logic where, before previewing content inside a directory over the browser, the logic will check if the previewed item is a file or a folder. If it is a file, two buttons will be previewed with it: Preview and Download. If the item is a folder, only one button will be previewed with it: Preview. 
