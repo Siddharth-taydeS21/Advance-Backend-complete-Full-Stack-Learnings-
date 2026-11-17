@@ -138,7 +138,7 @@ Learned about -
 
 - Created a basic http server which servers local html css and js files ans text response on the localhost url when we go to this routes - /html, /js, /css.
 
-## Lecture 21, 22, 23 - 
+## Lecture 21, 22, 23 - Started a Google Drive-inspired mini backend project
 
 - Implemented a web server which serves local files in a directory, but this time used actual files to serve over the browser, such as text files, JPEG files, PDF files, and video files. 
 - Started a basic project inspired by Google Drive, which can simply serve files over the browser with preview, download, and upload buttons. 
@@ -149,4 +149,27 @@ Learned about -
     - When the user types a file name or folder name in the URL and provides a specific query param (like `action=preview` or `action=download`), the file or particular folder will start previewing or downloading. 
     - If the query param `action` is equal to `preview`, the file will be previewed on the browser using a response header: `response.setHeader('Content-Type', mimeType)`, where `mimeType` is the MIME type of that specific file. Used the `mime-type` npm package for getting the exact MIME type by providing the exact file. 
     - When the user provides a query param `action=download`, after the file name, the file will start downloading. Implemented the download functionality using the response header: `response.setHeader('Content-Disposition', 'attachment; filename={file name}')`. 
-    - Added an extra edge case logic where, before previewing content inside a directory over the browser, the logic will check if the previewed item is a file or a folder. If it is a file, two buttons will be previewed with it: Preview and Download. If the item is a folder, only one button will be previewed with it: Preview. 
+    - Added an extra edge case logic where, before previewing content inside a directory over the browser, the logic will check if the previewed item is a file or a folder. If it is a file, two buttons will be previewed with it: Preview and Download. If the item is a folder, only one button will be previewed with it: Preview.
+
+## Lecture 24 - Client-side versus server-side rendering 
+
+- **Client-side rendering** : 
+    In client-side rendering, the browser downloads the raw HTML and JavaScript files with raw html css and JavaScript files. It fetches data from APIs and backends, then populates the data on the generated HTML and CSS pages, then loads it on the browser for users to interact with it.
+    - **Advantages of client-side rendering**: lower server load, better user interactions, and UI/UX. 
+    - **Disadvantages** : challenges in SEO, Extra logic for scalability & performance optimization. 
+
+- **Server-side rendering** :
+    In server-side rendering, first we fetch data from APIs and the backend. Then we create HTML and CSS pages on the server side. When the user wants it on the front-end, we send the populated HTML and CSS pages as a response to the client. 
+    - **Advantages of client-side rendering**: Better for SEO, better speed, Low-end device-friendly
+    - **Disadvantages**: Higher server-side load, Lack of interactivity and UI/UX, Lack of page transitions
+
+## Lecture 25 - Integrated front-end in our backend project. 
+
+- Created a front-end client folder for dedicated front-end client-side code using React. 
+- Made changes in the backend project. The backend, or the server, will only send a response as JSON, and the frontend will consume it and handle the client-side rendering. 
+
+## Lecture 26, 27 - added UI plus upload, and delete functionality 
+
+- **Implemented upload functionality** on the server using the Fetch API and the POST HTTP request method. Collecting an input file or folder as a file input and sending that file with a POST request and request body to the server. The server will read that incoming file or folder as a readable stream and, by using a writable stream and the `pipe` method on the server, writing the folder or file into to storage directory in a fast way using streams.  
+- **Implemented upload progress functionality** on the client side. For implementing this, used XHR (XML HTTP Request) instead of the Fetch API because XML provides us the ability to inspect the progress of a currently uploading file, and the Fetch API doesn't. Used the `xhr.upload` and its `progress` event to track the `loaded` and `total` properties. by calculating them both, Showed the progress of the upload as a percentage on the front-end. 
+- **Implemented delete functionality** using the `delete` method of the Fetch API and sent the certain file name with the `delete` method as the body. The server will read the `req.body`, which is a file name sent by the front-end client. Then the server will remove that file from the storage folder, and the changes on the server and the front-end will be updated in real time. 
