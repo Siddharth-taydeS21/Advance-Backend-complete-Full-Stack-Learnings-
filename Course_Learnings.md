@@ -27,3 +27,6 @@
 
 ## Section 10: Networking with core Node.js
 * [Section 10 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_10/Learnings.md)
+
+## Section 11: Building Rest APIs with Express.js
+* [Section 11 Learnings Index](https://github.com/Siddharth-taydeS21/Advance-Backend-complete-Full-Stack-Learnings-/blob/main/Section_11/Learnings.md)
