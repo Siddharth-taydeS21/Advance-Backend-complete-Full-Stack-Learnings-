@@ -22,7 +22,7 @@ they can handle the error without the server crash and can end the response.
 - Handled multiple routes in Express server, such as `app.get`, `app.post`, `app.put`, and `app.delete` and used `Postman` as a client for sending different HTTP requests. 
 - Difference between `url` and `routes`
 
-## Lecture 6, 7, 8 - 
+## Lecture 6, 7, 8, 9 - 
 
 - Adding global middlewares using the `app.use(handler callback)` method, which is used for registering middlewares globally or on specific route
 - Adding route-specific middlewares using `app.use('/specific-route', handler_callback)` 
@@ -30,3 +30,10 @@ they can handle the error without the server crash and can end the response.
     - We use `express.json` to automatically parse the JSON data from incoming HTTP requests. 
     - We use `express.static()` to serve static files on the server. We give the exact folder name, such as `dist` or `public`, in the `express.static` call to tell the server where it needs to find the file to serve on the server. 
 - Learned about how to serve files on the HTTP server in an optimized and fast way using `express.static` and `response.sendFile` methods. 
+
+## Lecture 10 - 
+
+- creating the file storage app backend using Express.js
+- used express.json middleware for dir content serving along with readdir method
+- used express.static middleware for files serving 
+- used custom middleware for checking the query - "download" and set header using res.set method for downloads   

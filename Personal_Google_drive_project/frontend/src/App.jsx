@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 function App() {
   const [newData, setData] = useState([])
   const [progress, setProgress] = useState(0);
-  const rootUrl = 'http://127.0.0.1:3000/';
+  const rootUrl = 'http://127.0.0.1:4000/';
 
   const fetchData = async () => {
     const res = await fetch(rootUrl);
@@ -108,7 +108,7 @@ function App() {
             return <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center', width: '800px' }}>
               <p style={{ textTransform: 'capitalize' }}>{item.name}</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '.3rem' }}>
-                <a href={`${rootUrl}${item.name}?action=preview`}
+                <a href={`${rootUrl}${item.name}`}
                   onClick={() => <newFolder />}
                   style={{
                     backgroundColor: '#007bff',
