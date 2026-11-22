@@ -36,4 +36,14 @@ they can handle the error without the server crash and can end the response.
 - creating the file storage app backend using Express.js
 - used express.json middleware for dir content serving along with readdir method
 - used express.static middleware for files serving 
-- used custom middleware for checking the query - "download" and set header using res.set method for downloads   
+- used custom middleware for checking the query - "download" and set header using res.set method for downloads  
+
+## Lecture 11, 12 -
+
+- Added create, read, update, and delete functionalities in our mini storage app's Express backend
+- Used different request and response headers like - Access-Control-Allow-Methods and Access-Control-Allow-Headers for accepting JSON data from the client.   
+- Used different app routes for handling the operations like read, update, and delete. 
+- For implementing update functionality on backend storage, use a 'PATCH' route along with native Node.js file system methods such as `fs.rename`.
+- For implementing Delete functionality, used response header - `Content-Disposition-Attachment`. 
+- For implementing create/update functionality, used a combination of a custom writable stream, along with the `pipe` method for handling automatic backpressure while writing/assembling the file on the server.
+
