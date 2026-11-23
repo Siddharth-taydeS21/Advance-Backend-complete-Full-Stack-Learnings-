@@ -47,3 +47,14 @@ they can handle the error without the server crash and can end the response.
 - For implementing Delete functionality, used response header - `Content-Disposition-Attachment`. 
 - For implementing create/update functionality, used a combination of a custom writable stream, along with the `pipe` method for handling automatic backpressure while writing/assembling the file on the server.
 
+## Lecture 13, 14 - Understanding CORS Policy and Preflight request 
+
+- **CORS** - It stands for Cross-Origin Resource Sharing Policy. It's the browser's security mechanism, which lets the server specify which different origins can access its resources. By default, the browser uses **SOP**, which stands for Same Origin Policy. It means that, by default, the browser will block fetch or XMLHttpRequest unless the client's origin matches the server's protocol, IP address/domain, and port. 
+
+- **Preflight Requests** - Some requests, by default, do not trigger CORS preflight. Those requests are called **simple requests**. GET, POST, and HEAD methods Are the examples of simple requests. Clients connected with servers send the preflight requests for checking the allowed methods and headers by the server. For enabling preflight requests and OPTIONS requests, we can use the `cors` package, which automatically/dynamically allows all HTTP request methods which we define on our server side. It also dynamically allows the `request headers` which a client sends while accessing the resources of the server via fetch and XMLHttpRequests. 
+
+## Lecture 15, 16 - Adding Directory and nested Directories preview feature - 
+
+- Implemented client-side routing using React Router DOM. Used the `useParam` hook.
+- Implemented file operations in nested and multilevel nested directories. Used `react-router-dom` and its `useParams` hook effectively to know which folder or file the user is currently browsing. Sent that path of the user to the server with various HTTP requests, such as GET, POST, PATCH, and DELETE. On the server, for each HTTP request, a different operation is defined. 
+- Implemented directory creation and directory deletion functionality in the root directory and multi-level nested directories.
