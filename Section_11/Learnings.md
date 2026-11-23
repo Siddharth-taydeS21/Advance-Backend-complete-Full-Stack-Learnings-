@@ -53,8 +53,10 @@ they can handle the error without the server crash and can end the response.
 
 - **Preflight Requests** - Some requests, by default, do not trigger CORS preflight. Those requests are called **simple requests**. GET, POST, and HEAD methods Are the examples of simple requests. Clients connected with servers send the preflight requests for checking the allowed methods and headers by the server. For enabling preflight requests and OPTIONS requests, we can use the `cors` package, which automatically/dynamically allows all HTTP request methods which we define on our server side. It also dynamically allows the `request headers` which a client sends while accessing the resources of the server via fetch and XMLHttpRequests. 
 
-## Lecture 15, 16 - Adding Directory and nested Directories preview feature - 
+## Lecture 15, 16, 17, 18, 20 - Adding Directory and nested Directories preview feature - 
 
 - Implemented client-side routing using React Router DOM. Used the `useParam` hook.
 - Implemented file operations in nested and multilevel nested directories. Used `react-router-dom` and its `useParams` hook effectively to know which folder or file the user is currently browsing. Sent that path of the user to the server with various HTTP requests, such as GET, POST, PATCH, and DELETE. On the server, for each HTTP request, a different operation is defined. 
 - Implemented directory creation and directory deletion functionality in the root directory and multi-level nested directories.
+- Understanding the file traversal vulnerability in our banking project and fixing it
+- Separating different route handlers in different modules in a dedicated routes folder (refactor and separation of concerns)

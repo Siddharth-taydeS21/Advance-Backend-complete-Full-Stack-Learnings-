@@ -6,8 +6,9 @@ function DirectoryView() {
   const [newData, setData] = useState([])
   const [progress, setProgress] = useState(0);
   const [filename, setFilename] = useState('');
+  const [dirname, setDirname] = useState('');
   const [oldFilename, setOldFilename] = useState('');
-  const {'*': dirpath} = useParams();
+  const { '*': dirpath } = useParams();
 
   const fetchData = async () => {
     const res = await fetch(`${BASE_URL}directory/${dirpath ? dirpath : ''}`);
@@ -49,9 +50,9 @@ function DirectoryView() {
 
   const handleRename = async (oldFileName, filename) => {
     // console.log(oldFileName, filename);
-    const response = await fetch(`${BASE_URL}files/${oldFileName}`, { 
-      method: 'PATCH', 
-      body: JSON.stringify({oldFileName, filename, dirpath}),
+    const response = await fetch(`${BASE_URL}files/${oldFileName}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ oldFileName, filename, dirpath }),
       headers: {
         'Content-Type': 'application/json',
       }
@@ -62,33 +63,58 @@ function DirectoryView() {
     setFilename('')
   }
 
+  const handleCreateDir = async (e) => {
+    e.preventDefault();
+    const url = `${BASE_URL}directory/${dirpath ? dirpath + '/' : ''}${dirname}`
+    const res = await fetch(url, { method: 'POST' });
+    const data = await res.text();
+    fetchData()
+    setDirname('');
+  }
+
   useEffect(() => {
     fetchData();
   }, [])
 
   return (
-    <div style={{padding: '10px 30px'}}>
+    <div style={{ padding: '10px 30px' }}>
       <h1>My Files</h1>
-      <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+
+      <hr />
+      <div style={{ gap: '30px' }}>
         <div>
           <h3>Upload a file</h3>
           <input type="file" onChange={handleUpload} />
           <p>Progress: {progress}%</p>
         </div>
 
+        <hr />
+
         <div>
-          <h3>Rename a file</h3>
+          <h3>Rename a file/folder</h3>
           <input type="text" value={filename} onChange={(e) => {
             setFilename(e.target.value)
           }} />
           <button onClick={() => { handleRename(oldFilename, filename) }}>Save</button>
         </div>
 
+        <hr />
+
+        <div>
+          <h3>Create Folder</h3>
+          <form onSubmit={handleCreateDir}>
+            <input type="text" onChange={(e) => setDirname(e.target.value)} value={dirname} />
+            <button>Create</button>
+          </form>
+        </div>
+
+        <hr />
+
       </div>
       {
-        newData.map(({name, isDirectory}, i) => {
-          return <div key={i} style={{ display: 'flex', justifyContent: 'space-between'}}>
-            <p style={{ textTransform: 'capitalize' }}>{isDirectory ? "📁" : "🗃️" }{name}</p>
+        newData.map(({ name, isDirectory }, i) => {
+          return <div key={i} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p style={{ textTransform: 'capitalize' }}>{isDirectory ? "📁" : "🗃️"}{name}</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.3rem' }}>
 
               {!isDirectory && <a href={`${BASE_URL}files/${dirpath ? dirpath + '/' : ''}${name}`}
