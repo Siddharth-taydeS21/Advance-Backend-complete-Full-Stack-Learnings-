@@ -60,3 +60,34 @@ they can handle the error without the server crash and can end the response.
 - Implemented directory creation and directory deletion functionality in the root directory and multi-level nested directories.
 - Understanding the file traversal vulnerability in our banking project and fixing it
 - Separating different route handlers in different modules in a dedicated routes folder (refactor and separation of concerns)
+
+## Lecture 21 - Creating a virtual file system (Previous project with a new and security-wise best and scalable approach)
+
+- Handling POST route First :
+    - getting the files with post method 
+    - storing them only in storage folder (single source of truth)
+    - storing files in storage directory while adding the metadata about the file in dedicated filesDB.json
+- how we can file in storage dir & store the metadata about the file in filesDB.json :
+    - making the new file name with `crypto.randomUUID` and preserving the uploaded file extension with `path.extname`. The new file name will be created using a `crypto.randomUUID` and the extension name of that file, and the file will be stored in the storage directory. 
+    - adding the id, extension name, filename with extension and the size(optional) of in filesDB.json. - first reading it as text -> stringify -> push new data -> write it where it was with new data.
+- Handling the get route : 
+    - Destructure the unique file ID from the GET request URL
+    - Looking for that ID in fileDB.json. 
+    - response.sendFile('./storage/fileid+extName') -> fileID+file extension (from the storage dir)
+- Handling the patch (rename) route  :
+    - Accepting the id of the file which will be renamed, along with a query called "newName", where the user can send the new name of the file with the patch request
+    - Extracting the old file ID from `request.params` and extracting the new file name from `request.query` 
+    - Accessing the resource file entry from filesDB.json using the id param in req.params to rename it and After renaming, adding it with the new name, and writing it in the fileDB.json. 
+- Handling the delete route  :
+    - Destructuring the unique ID from delete request parameters 
+    - Finding the resource file in the storage directory first using its unique ID and extension name 
+    - Then, using that same unique ID, removing the file entry from filesDB.json 
+  
+
+## Lecture 23: Implementations - 
+- defined directories schema in directoriesDB.json file with child files and directories
+- In the directory DB.json schema, just providing the IDs of child files or folders. But when the user fetches it using a GET request on the directory route, the user will not only see the IDs of child files or folders in the root directory, It can see the full object of that file or that folder in the directory schema. 
+- When the user sends or posts a file on the files route in (post request), by default, the file will be stored in the root directory until and unless the user sends a dedicated `parentDirID` request header in the POST request. 
+- When the user uploads a file, it will be added in the storage directory, and the entry will be added in filesDB.json and directoriesDB.json. If the user deletes it, it will be removed from all three sources: storage, filesDB.json and directoriesDB.json.
+
+## Lecture 24 - Integrated the Backed API on the frontend 

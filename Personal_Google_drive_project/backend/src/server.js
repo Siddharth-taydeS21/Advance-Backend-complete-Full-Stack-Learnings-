@@ -8,7 +8,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use('/directory', DirectoryRouter)
-app.use('/files', filesRouter)
+app.use('/file', filesRouter)
 
 app.listen(4000, () => {
     console.log('Server is running on port 4000')
