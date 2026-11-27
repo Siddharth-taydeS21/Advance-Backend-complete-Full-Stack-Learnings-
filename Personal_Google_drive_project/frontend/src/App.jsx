@@ -6,6 +6,10 @@ const router = createBrowserRouter([
     path: '/*',
     element: <DirectoryView />
   },
+  {
+    path: '/directory/:dirID',
+    element: <DirectoryView />
+  },
 ])
 
 function App(){

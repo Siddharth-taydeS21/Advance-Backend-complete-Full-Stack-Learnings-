@@ -9,30 +9,6 @@ import { STORAGE_DIR_PATH, FILES_DB_PATH, DIRECTORIES_DB_PATH } from '../config/
 
 const filesRouter = express.Router();
 
-// Read Feature
-filesRouter.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    const filedata = filesData.find((file) => file.id === id);
-
-    if(!filedata){
-        res.status(404).json({ error: 'File or resource not found' })
-    }
-
-    if (req.query.action === 'download') {
-        res.attachment(filedata.filename)
-    }
-    try {
-        const filePath = `${STORAGE_DIR_PATH}/${filedata.id}${filedata.extension_name}`
-        res.sendFile(filePath, (err) => {
-            if (err && !res.headersSent) {
-                res.status(err.statusCode || 500).json({error: err.message})
-            }
-        });
-    } catch (error) {
-        res.status(500).json({ error: error.message })
-    }
-})
-
 // Create Feature
 filesRouter.post('/:filename', async (req, res) => {
     // adding the file in storage dir
@@ -69,6 +45,30 @@ filesRouter.post('/:filename', async (req, res) => {
     req.on('error', (err) => {
         console.log('Connection Lost with the client')
     })
+})
+
+// Read Feature
+filesRouter.get('/:id', async (req, res) => { 
+    const { id } = req.params;
+    const filedata = filesData.find((file) => file.id === id);
+
+    if(!filedata){
+        return res.status(404).json({ error: 'File or resource not found' })
+    }
+
+    if (req.query.action === 'download') {
+        res.attachment(filedata.filename)
+    }
+    try {
+        const filePath = `${STORAGE_DIR_PATH}/${filedata.id}${filedata.extension_name}`
+        res.sendFile(filePath, (err) => {
+            if (err && !res.headersSent) {
+                res.status(err.statusCode || 500).json({error: err.message})
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
 })
 
 // Update Feature

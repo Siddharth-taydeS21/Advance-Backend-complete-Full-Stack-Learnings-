@@ -1,5 +1,16 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
+const buttonStyle = {
+  backgroundColor: '#007bff',
+  color: 'white',
+  padding: '10px 20px',
+  border: 'none',
+  borderRadius: '5px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  textDecoration: 'none'
+}
 
 function DirectoryView() {
   const BASE_URL = 'http://127.0.0.1:4000/'
@@ -9,22 +20,24 @@ function DirectoryView() {
   const [progress, setProgress] = useState(0);
   const [filename, setFilename] = useState('');
   const [dirname, setDirname] = useState('');
-  const { '*': dirpath } = useParams();
+  const { dirID } = useParams();
 
   // READ FEATURE
   const fetchData = async () => {
-    const res = await fetch(`${BASE_URL}directory`);
+    const res = await fetch(`${BASE_URL}directory/${dirID || ''}`);
     const data = await res.json();
     // console.log(data)
     setFilesData(data.files)
+    setDirectoryData(data.directories)
   }
 
   // CREATE FEATURE
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', `${BASE_URL}file/${file.name}`, true) 
+    xhr.open('POST', `${BASE_URL}file/${file.name}`, true)
     // we can send the parent directory ID as the req.header, work on that feature 
+    xhr.setRequestHeader('parentDirId', `${dirID || ''}`);
     xhr.addEventListener('load', () => {
       fetchData()
       setProgress(0)
@@ -38,13 +51,20 @@ function DirectoryView() {
   }
 
   // DELETE FEATURE
-  const handleDelete = async (id) => {
-    const response = await fetch(`${BASE_URL}file/${id}`, {
+  const handleDelete = async (id, str) => {
+    const url = 
+    str === 'forFile' 
+    ? `${BASE_URL}file/${id}` 
+    : `${BASE_URL}directory/${id}`; 
+    // console.log(url)
+
+    const response = await fetch(url, {
       method: 'DELETE'
     })
     const data = await response.text();
     console.log(data);
     fetchData();
+    // console.log(id)
   }
 
   const UpdateInput = (filename, fileID) => {
@@ -53,8 +73,13 @@ function DirectoryView() {
   }
 
   // UPDATE FEATURE
-  const handleRename = async (id) => {
-    const response = await fetch(`${BASE_URL}file/${id}?newName=${filename}`, {
+  const handleRename = async (id, str) => {
+    const url = 
+    str === 'forFile' 
+    ? `${BASE_URL}file/${id}?newName=${filename}` 
+    : `${BASE_URL}directory/${id}?newName=${filename}`; 
+
+    const response = await fetch(url, {
       method: 'PATCH',
     })
     const data = await response.text();
@@ -65,16 +90,24 @@ function DirectoryView() {
 
   const handleCreateDir = async (e) => {
     e.preventDefault();
-    const url = `${BASE_URL}directory/${dirpath ? dirpath + '/' : ''}${dirname}`
-    const res = await fetch(url, { method: 'POST' });
-    const data = await res.text();
-    fetchData()
-    setDirname('');
+    if (dirname) {
+      const res = await fetch(`${BASE_URL}directory/${dirname}`, {
+        method: 'POST',
+        headers: {
+          parentDirID: dirID || ''
+        }
+      })
+      const data = await res.text()
+      console.log(data)
+      fetchData()
+      setDirname('');
+    }
+    return
   }
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, [dirID])
 
   return (
     <div style={{ padding: '10px 30px' }}>
@@ -95,7 +128,6 @@ function DirectoryView() {
           <input type="text" value={filename} onChange={(e) => {
             setFilename(e.target.value)
           }} />
-          <button onClick={() => { handleRename(renameFileID) }}>Save</button>
         </div>
 
         <hr />
@@ -112,62 +144,42 @@ function DirectoryView() {
 
       </div>
       { // files data 
-        filesData.map(({ filename, id }) => {
-          return <div key={id} style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p style={{ textTransform: 'capitalize' }}>{filename}</p>
+        directoryData.map((dir) => {
+          if (!dir) {
+            return;
+          }else{
+            return <div key={dir.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p style={{ textTransform: 'capitalize' }}>📁 {dir.dirName}</p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '.3rem' }}>
 
-              <a href={`${BASE_URL}file/${id}`}
-                style={{
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '5px',
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  textDecoration: 'none'
-                }}
-              >Preview</a>
+              <Link to={`/directory/${dir.id}`} style={buttonStyle}>Preview</Link>
 
-              <a href={`${BASE_URL}file/${id}?action=download`}
-                style={{
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '5px',
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  textDecoration: 'none'
-                }}
-              >Download</a>
+              <a onClick={() => UpdateInput(dir.dirName, dir.id)} style={buttonStyle}>Rename</a>
 
-              <a onClick={() => UpdateInput(filename, id)}
-                style={{
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '5px',
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  textDecoration: 'none'
-                }}
-              >Rename</a>
+              <button style={buttonStyle} onClick={() => { handleRename(dir.id, 'forDir')}}>Save</button>
 
-              <a onClick={() => handleDelete(id)}
-                style={{
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '5px',
-                  fontSize: '16px',
-                  cursor: 'pointer',
-                  textDecoration: 'none'
-                }}
-              >Delete</a>
+              <a onClick={() => handleDelete(dir.id, 'forDir')} style={buttonStyle} >Delete</a>
+
+            </div>
+          </div>
+          }
+        })
+      }
+      { // files data 
+        filesData.map(({ filename, id }) => {
+          return <div key={id} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <p style={{ textTransform: 'capitalize' }}>🗃️ {filename}</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '.3rem' }}>
+
+              <a href={`${BASE_URL}file/${id}`} style={buttonStyle} >Preview</a>
+
+              <a href={`${BASE_URL}file/${id}?action=download`} style={buttonStyle}>Download</a>
+
+              <a onClick={() => UpdateInput(filename, id)} style={buttonStyle}>Rename</a>
+
+              <button style={buttonStyle} onClick={() => { handleRename(renameFileID, 'forFile')}}>Save</button>
+
+              <a onClick={() => handleDelete(id, 'forFile')} style={buttonStyle}>Delete</a>
 
             </div>
           </div>

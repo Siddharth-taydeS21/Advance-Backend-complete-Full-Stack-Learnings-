@@ -85,9 +85,119 @@ they can handle the error without the server crash and can end the response.
   
 
 ## Lecture 23: Implementations - 
+
 - defined directories schema in directoriesDB.json file with child files and directories
 - In the directory DB.json schema, just providing the IDs of child files or folders. But when the user fetches it using a GET request on the directory route, the user will not only see the IDs of child files or folders in the root directory, It can see the full object of that file or that folder in the directory schema. 
 - When the user sends or posts a file on the files route in (post request), by default, the file will be stored in the root directory until and unless the user sends a dedicated `parentDirID` request header in the POST request. 
 - When the user uploads a file, it will be added in the storage directory, and the entry will be added in filesDB.json and directoriesDB.json. If the user deletes it, it will be removed from all three sources: storage, filesDB.json and directoriesDB.json.
 
 ## Lecture 24 - Integrated the Backed API on the frontend 
+
+- Implemented full CURD functionality on the server side using Express Router. 
+- Tested the directory GET, file GET, file UPLOAD/POST, file RENAME/PATCH, and file DELETE routes of the backend using Postman. 
+- After testing all server routes, made changes in the front-end to integrate the backend API with our front-end. 
+- Integrated the backend API on our frontend and refactored get, post, patch, delete, and directory get functionalities on the frontend side. 
+  
+## Lecture 25 - CURD Operation on Directories 
+
+- Implemented direct creation functionality
+  - on directory post - get dirname and parentDirID from req (on the server) 
+  - created a post route in directory router. getting the `dirname` and `parentDirID` from request object 
+  - creating new dir id, `files` array `directories` array and populating `dirName`, `parentDirID` programmatically 
+  - getting the parent directory for updating the entry in parentDir's `directories` filed.
+  - saving the updated dirs data in dirsDB.json file
+
+  - added a custom logic in get directory route: in child directory filed of a directory, there will be not only ids of child directories, there will be the mete data about the child directories in response.
+  - made changes in frontend to populate the directories data using directories array on frontend✅
+
+
+- Implemented Review or open directory functionality.  
+  - On directory open click: a URL will be generated on the front-end like this - /directory/dirid
+  - on URL change, fetch call will be triggered for showing the directory's data on the front-end. Implemented this using React Router DOM and its `Link` tag and `useParams` hook.  
+
+file upload functionality in nested Directory - 
+  - On the post route in files handler router, the server is extracting the parent directory ID from a file's metadata in the request object. 
+  -  uploaded files ID will be added in its parent directory's files filed in directoriesDB.json. 
+  -  The fetch call will be triggered after this operation to show the real-time updates. 
+  
+## Lecture 26 - Adding rename and delete functionality for directories 
+
+### Rename dir feature 
+- Created a post route and route handler for handling directory renaming on the POST requests 
+- Getting the directory ID from the request parameter and getting the new directory name as the request query from the client 
+- Finding the directory from directories.db.json using the directory ID got from the client in the request parameter.
+- Accessing the directory's new field and updating it with the new directory name got from request query 
+- lastly, updating the directories DB JSON file using the `writeFile` method of the file system promises API.
+
+### Delete dir feature (Recursive Directories delete feature)
+- Getting the directory ID from the client and request parameters 
+- Finding the directory data using directory ID, looping over it, and accessing its child files and child directories
+- Passing the child directories in the same function call as a recursive call 
+- At first, deleting the child file and directory from filesDB and physical storage 
+- Deleting the directory's entry from its parent directory's .directories array 
+- removing the empty directory from the directories data file 
+- writing updated directories data physically in the file directoriesDB.json file. 
+
+## Lecture 27 - REST API principles 
+
+- **REST API:** - it stands for Representational State Transfer Application Programming Interface. 
+### Principles to follow while implementing REST APIs in React : -
+-  **Resource based:** - Each resource on the API, such as users or orders, should be identified as unique URIs (Uniform Resource Identifier )
+  - **Stateless:** - Each request From the client, must contain all the data which is needed to process the response. 
+  - **HTTP Methods:** - Follow the HTTP method rules strictly. 
+  - **Representation of resources:** - A resource should be typically represented as JSON or XML. 
+  - **Client server Architecture:** - Separation of concerns between the front-end (client) and the backend (server) 
+  
+  ## Best Practices for REST APIs
+
+### 1. **Use Descriptive URIs**
+
+- **Good:** `/users/1/orders`
+- **Bad:** `/getUserOrders`
+
+### 2. **Follow HTTP Standards**
+
+- Use HTTP methods correctly for the desired operation (e.g., `GET` for retrieval, `POST` for creation).
+
+### 3. **Version Your API**
+
+- Include versioning in your URI to handle updates gracefully:
+  ```
+  /v1/users
+  /v2/users
+  ```
+
+### 4. **Provide Clear Error Messages and Status Codes**
+
+- Use meaningful HTTP status codes and error messages to aid debugging.
+  - `200 OK`
+  - `201 Created`
+  - `400 Bad Request`
+  - `401 Unauthorized`
+  - `404 Not Found`
+  - `500 Internal Server Error`
+
+### 5. **Use Secure Authentication and Authorization**
+
+- Implement secure methods such as **OAuth2** or **JWT (JSON Web Tokens)** to protect sensitive operations.
+
+### 6. **Paginate Large Data Sets**
+
+- When returning a large number of records, paginate the results to improve performance:
+  ```
+  GET /users?page=2&limit=50
+  ```
+
+### 7. **Rate Limiting**
+
+- Protect your API from abuse by limiting the number of requests a client can make:
+  ```
+  429 Too Many Requests
+  ```
+
+### 8. **Cache Responses**
+
+- Implement caching for frequently requested data to improve performance and reduce server load:
+  - Use HTTP caching headers like `Cache-Control` and `ETag`.
+
+

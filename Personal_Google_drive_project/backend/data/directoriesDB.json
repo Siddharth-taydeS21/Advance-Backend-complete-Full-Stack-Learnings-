@@ -1,15 +1,17 @@
 [
     {
         "id": "0001",
-        "name": "root",
-        "parentDir": null,
+        "dirName": "root",
+        "parentDirID": null,
         "files": [],
-        "directories": []
+        "directories": [
+            "8c6bba5f-0a48-41e1-85eb-d0f626a38619"
+        ]
     },
     {
-        "id": "0003",
-        "name": "root",
-        "parentDir": null,
+        "id": "8c6bba5f-0a48-41e1-85eb-d0f626a38619",
+        "dirName": "folder",
+        "parentDirID": "0001",
         "files": [],
         "directories": []
     }
